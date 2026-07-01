@@ -2,907 +2,1262 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Milestone Homes | 3D Immersive Real Estate · Dubai</title>
-<meta name="description" content="Experience luxury real estate in 3D. Off-plan pioneers, curated properties, and immersive digital experience.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Milestone Homes Real Estate | 10,000+ Premium Properties in Dubai</title>
+<meta name="description" content="Browse 10,000+ luxury properties across Dubai. Villas, apartments, penthouses in Downtown, Palm Jumeirah, Dubai Hills, Business Bay and more.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/playfair-display@latest/latin-400-normal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/playfair-display@latest/latin-700-normal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/playfair-display@latest/latin-900-normal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/inter@latest/latin-400-normal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/inter@latest/latin-500-normal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/inter@latest/latin-600-normal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/inter@latest/latin-700-normal.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+:root{--gold:#C9A96E;--gold-light:#E5D4A8;--gold-dark:#A88A4E;--navy:#1A2A3A;--navy-dark:#0F1A26;--navy-light:#2A3F54;--white:#FFFFFF;--off-white:#F8F6F1;--gray:#6B7280;--gray-light:#E5E7EB;--serif:'Playfair Display',Georgia,serif;--sans:'Inter',-apple-system,sans-serif;--ease:cubic-bezier(0.4,0,0.2,1);--shadow-sm:0 4px 20px rgba(26,42,58,0.06);--shadow-md:0 10px 40px rgba(26,42,58,0.1);--shadow-lg:0 20px 60px rgba(26,42,58,0.18);--shadow-gold:0 10px 40px rgba(201,169,110,0.35)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:var(--sans);color:var(--navy);background:var(--white);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:700;line-height:1.15}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+ul{list-style:none}
+.container{max-width:1320px;margin:0 auto;padding:0 28px}
 
-  :root {
-    --gold: #D4AF6A;
-    --gold-light: #E9C889;
-    --gold-dim: rgba(212, 175, 106, 0.2);
-    --dark-void: #0A0A0A;
-    --dark-charcoal: #121212;
-    --dark-slate: #1A1A1A;
-    --stone: #A59D8F;
-    --pearl: #F5EFE6;
-    --white: #FFFFFF;
-    --serif: 'Cormorant Garamond', Georgia, serif;
-    --sans: 'Inter', system-ui, -apple-system, sans-serif;
-  }
+/* Loader */
+.loader{position:fixed;inset:0;background:var(--navy-dark);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;transition:opacity .6s ease,visibility .6s ease}
+.loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.loader-logo{height:80px;width:auto;animation:pulseLogo 1.5s infinite}
+.loader-bar{width:200px;height:3px;background:rgba(201,169,110,0.2);border-radius:10px;overflow:hidden}
+.loader-bar::after{content:'';display:block;height:100%;width:40%;background:linear-gradient(90deg,var(--gold),var(--gold-light));animation:loadBar 1.2s infinite}
+.loader-text{color:var(--gold);font-size:0.85rem;letter-spacing:3px;text-transform:uppercase;font-weight:600}
+@keyframes pulseLogo{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.05);opacity:0.8}}
+@keyframes loadBar{0%{transform:translateX(-100%)}100%{transform:translateX(350%)}}
 
-  body {
-    background: var(--dark-void);
-    color: var(--pearl);
-    font-family: var(--sans);
-    font-size: 15px;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
+/* Navbar */
+.navbar{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:20px 0;transition:all .4s var(--ease);background:transparent}
+.navbar.scrolled{background:rgba(15,26,38,0.97);backdrop-filter:blur(14px);padding:14px 0;box-shadow:0 4px 30px rgba(0,0,0,0.2)}
+.navbar .container{display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;align-items:center;gap:12px;color:var(--white)}
+.logo-img{height:44px;width:auto}
+.logo-text{font-family:var(--serif);font-size:1.35rem;font-weight:700;color:var(--white)}
+.logo-text span{color:var(--gold)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:var(--white);font-size:0.92rem;font-weight:500;position:relative;transition:color .3s var(--ease)}
+.nav-links a::after{content:'';position:absolute;bottom:-6px;left:0;width:0;height:2px;background:var(--gold);transition:width .35s var(--ease)}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{padding:11px 26px!important;background:var(--gold)!important;color:var(--navy)!important;border-radius:4px;font-weight:600!important}
+.nav-cta::after{display:none!important}
+.nav-cta:hover{background:var(--gold-light)!important;transform:translateY(-2px);box-shadow:var(--shadow-gold)}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.nav-icon-btn{width:40px;height:40px;background:rgba(255,255,255,0.08);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--white);transition:all .3s var(--ease);position:relative;border:1px solid rgba(201,169,110,0.2)}
+.nav-icon-btn:hover{background:var(--gold);color:var(--navy)}
+.nav-badge{position:absolute;top:-4px;right:-4px;background:#ef4444;color:white;font-size:0.65rem;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.nav-badge:empty{display:none}
+.mobile-toggle{display:none;color:var(--white);font-size:1.5rem}
 
-  /* 3D Perspective Setup */
-  .perspective-wrapper {
-    perspective: 1200px;
-    overflow-x: hidden;
-  }
+/* Hero */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;color:var(--white);overflow:hidden}
+.hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&q=80');background-size:cover;background-position:center;background-attachment:fixed;transform:scale(1.1)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,26,38,0.88) 0%,rgba(26,42,58,0.72) 50%,rgba(201,169,110,0.28) 100%)}
+.hero-content{position:relative;z-index:2;max-width:1200px;padding:120px 28px 60px;margin:0 auto;text-align:center;width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;padding:10px 22px;background:rgba(201,169,110,0.12);border:1px solid rgba(201,169,110,0.5);border-radius:100px;font-size:0.82rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:30px;backdrop-filter:blur(10px)}
+.hero-title{font-size:clamp(2.4rem,6vw,4.8rem);font-weight:900;margin-bottom:20px;letter-spacing:-1px;line-height:1.05}
+.hero-title .accent{color:var(--gold);font-style:italic;font-weight:700}
+.hero-subtitle{font-size:clamp(1rem,1.6vw,1.15rem);max-width:640px;margin:0 auto 30px;opacity:0.92;line-height:1.75}
+.hero-stats-bar{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin-bottom:40px}
+.hero-stat{text-align:center}
+.hero-stat-num{font-family:var(--serif);font-size:2rem;color:var(--gold);font-weight:700;display:block}
+.hero-stat-label{font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;opacity:0.85}
 
-  /* 3D Parallax Layers */
-  .parallax-layer {
-    transform-style: preserve-3d;
-  }
+/* Search Bar */
+.search-bar{background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.15);border-radius:14px;padding:24px;max-width:1100px;margin:0 auto}
+.search-tabs{display:flex;gap:8px;margin-bottom:18px;justify-content:center;flex-wrap:wrap}
+.search-tab{padding:8px 22px;background:transparent;color:rgba(255,255,255,0.7);border-radius:100px;font-size:0.85rem;font-weight:600;transition:all .3s var(--ease);border:1px solid transparent}
+.search-tab.active{background:var(--gold);color:var(--navy)}
+.search-tab:hover:not(.active){color:var(--white);border-color:rgba(255,255,255,0.2)}
+.search-fields{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1fr auto;gap:10px;align-items:end}
+.search-field label{display:block;font-size:0.72rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.search-field select,.search-field input{width:100%;padding:12px 14px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:8px;color:var(--white);font-family:var(--sans);font-size:0.9rem;transition:all .3s var(--ease)}
+.search-field select option{background:var(--navy-dark);color:var(--white)}
+.search-field select:focus,.search-field input:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,0.15)}
+.search-btn{padding:13px 28px;background:var(--gold);color:var(--navy);border-radius:8px;font-weight:700;display:flex;align-items:center;gap:8px;transition:all .3s var(--ease);height:fit-content;white-space:nowrap}
+.search-btn:hover{background:var(--gold-light);transform:translateY(-2px)}
+.search-count{text-align:center;margin-top:14px;font-size:0.85rem;color:rgba(255,255,255,0.8)}
+.search-count strong{color:var(--gold);font-weight:700}
 
-  ::-webkit-scrollbar { width: 5px; }
-  ::-webkit-scrollbar-track { background: #1A1A1A; }
-  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;font-family:var(--sans);font-size:0.92rem;font-weight:600;border-radius:4px;transition:all .35s var(--ease);letter-spacing:0.5px;border:none;cursor:pointer}
+.btn-primary{background:var(--gold);color:var(--navy)}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-3px);box-shadow:var(--shadow-gold)}
+.btn-outline{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,0.5)}
+.btn-outline:hover{background:var(--white);color:var(--navy);border-color:var(--white);transform:translateY(-3px)}
+.btn-dark{background:var(--navy);color:var(--white)}
+.btn-dark:hover{background:var(--navy-dark);transform:translateY(-2px)}
 
-  /* 3D Navigation */
-  .nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.5rem 3rem;
-    transition: all 0.4s cubic-bezier(0.2, 0, 0, 1);
-    background: linear-gradient(to bottom, rgba(10,10,10,0.96) 0%, transparent 100%);
-    backdrop-filter: blur(10px);
-    transform: translateZ(20px);
-  }
-  .nav.scrolled {
-    background: rgba(10,10,10,0.98);
-    backdrop-filter: blur(16px);
-    padding: 0.9rem 3rem;
-    border-bottom: 1px solid var(--gold-dim);
-  }
-  .logo {
-    font-family: var(--serif);
-    font-size: 1.6rem;
-    font-weight: 400;
-    letter-spacing: 0.02em;
-    text-decoration: none;
-    color: var(--white);
-    transition: transform 0.3s ease;
-    display: inline-block;
-  }
-  .logo:hover { transform: scale(1.05) translateZ(10px); text-shadow: 0 0 20px rgba(212,175,106,0.5); }
-  .logo span { color: var(--gold); font-weight: 500; }
-  .nav-links { display: flex; gap: 2.4rem; list-style: none; }
-  .nav-links a {
-    text-decoration: none;
-    font-size: 0.7rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(245,239,230,0.75);
-    transition: 0.3s;
-    font-weight: 500;
-    position: relative;
-  }
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: var(--gold);
-    transition: width 0.3s ease;
-  }
-  .nav-links a:hover::after { width: 100%; }
-  .nav-links a:hover { color: var(--gold); text-shadow: 0 0 8px rgba(212,175,106,0.4); }
-  .nav-cta {
-    border: 1px solid var(--gold);
-    padding: 0.5rem 1.7rem;
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    background: transparent;
-    color: var(--gold);
-    transition: 0.3s;
-    text-decoration: none;
-    display: inline-block;
-  }
-  .nav-cta:hover { background: var(--gold); color: var(--dark-void); border-color: var(--gold); transform: translateY(-2px) scale(1.05); box-shadow: 0 5px 20px rgba(212,175,106,0.3); }
+/* Sections */
+.section{padding:100px 0}
+.section-header{text-align:center;max-width:720px;margin:0 auto 60px}
+.section-label{display:inline-block;font-size:0.82rem;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);margin-bottom:18px;padding:0 40px;position:relative}
+.section-label::before,.section-label::after{content:'';position:absolute;top:50%;width:30px;height:1px;background:var(--gold)}
+.section-label::before{left:0}
+.section-label::after{right:0}
+.section-title{font-size:clamp(2rem,4vw,2.8rem);margin-bottom:20px;color:var(--navy)}
+.section-subtitle{font-size:1.05rem;color:var(--gray);line-height:1.75}
 
-  /* 3D Hero Section */
-  .hero {
-    min-height: 100vh;
-    position: relative;
-    display: flex;
-    align-items: flex-end;
-    padding: 0 5rem 4rem 5rem;
-    overflow: hidden;
-    transform-style: preserve-3d;
-  }
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    z-index: -2;
-    background: linear-gradient(125deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.25) 70%), url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=2000&q=85') center/cover no-repeat;
-    animation: slowZoom 20s ease-out forwards;
-    transform: translateZ(-50px) scale(1.1);
-  }
-  @keyframes slowZoom { 0% { transform: translateZ(-50px) scale(1.15); } 100% { transform: translateZ(-50px) scale(1); } }
-  
-  .hero-content {
-    transform: translateZ(30px);
-    animation: fadeInUp3D 0.8s ease-out;
-  }
-  @keyframes fadeInUp3D {
-    from { opacity: 0; transform: translateY(40px) translateZ(-20px); }
-    to { opacity: 1; transform: translateY(0) translateZ(30px); }
-  }
-  
-  .hero-badge {
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    margin-bottom: 1rem;
-  }
-  .hero-badge::before { content: ''; width: 40px; height: 1px; background: var(--gold); }
-  
-  .hero h1 {
-    font-size: clamp(2.8rem, 8vw, 6rem);
-    font-weight: 300;
-    line-height: 1.05;
-    max-width: 800px;
-  }
-  .hero h1 em { font-style: italic; color: var(--gold-light); text-shadow: 0 0 30px rgba(212,175,106,0.3); }
-  .hero-sub {
-    max-width: 480px;
-    margin-top: 1rem;
-    color: rgba(245,239,230,0.7);
-  }
-  .hero-buttons {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-  
-  .btn-primary, .btn-outline {
-    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    cursor: pointer;
-    display: inline-block;
-    text-align: center;
-  }
-  .btn-primary {
-    background: var(--gold);
-    color: var(--dark-void);
-    padding: 0.9rem 2rem;
-    font-weight: 600;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    border: none;
-    text-decoration: none;
-    transform: translateZ(10px);
-  }
-  .btn-primary:hover { background: var(--gold-light); transform: translateY(-3px) translateZ(20px) scale(1.02); box-shadow: 0 10px 30px rgba(212,175,106,0.4); }
-  .btn-outline {
-    border: 1px solid rgba(212,175,106,0.6);
-    background: transparent;
-    padding: 0.9rem 2rem;
-    font-weight: 500;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    color: var(--pearl);
-    text-decoration: none;
-  }
-  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-3px); background: rgba(212,175,106,0.1); }
-  
-  .hero-stats {
-    position: absolute;
-    right: 3rem;
-    bottom: 4rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    transform: translateZ(40px);
-    animation: fadeInRight3D 0.8s 0.3s both;
-  }
-  @keyframes fadeInRight3D {
-    from { opacity: 0; transform: translateX(40px) translateZ(-20px); }
-    to { opacity: 1; transform: translateX(0) translateZ(40px); }
-  }
-  .stat-item .number { font-family: var(--serif); font-size: 1.8rem; font-weight: 400; color: var(--white); }
-  .stat-item .label { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--stone); }
-  .stat-divider { width: 1px; height: 30px; background: rgba(212,175,106,0.3); margin: 0 auto; }
+/* Property Grid */
+.properties-section{background:var(--off-white)}
+.properties-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:28px}
+.property-card{background:var(--white);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);transition:all .4s var(--ease);position:relative}
+.property-card:hover{transform:translateY(-10px);box-shadow:var(--shadow-lg)}
+.property-image{position:relative;height:260px;overflow:hidden;cursor:pointer}
+.property-image img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.property-card:hover .property-image img{transform:scale(1.1)}
+.property-badges{position:absolute;top:14px;left:14px;display:flex;gap:6px;flex-wrap:wrap}
+.property-badge{padding:5px 11px;background:var(--gold);color:var(--navy);font-size:0.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-radius:4px}
+.property-badge.developer{background:rgba(26,42,58,0.88);color:var(--white);backdrop-filter:blur(10px)}
+.property-actions{position:absolute;top:14px;right:14px;display:flex;flex-direction:column;gap:8px}
+.property-action-btn{width:36px;height:36px;background:rgba(255,255,255,0.95);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--navy);transition:all .3s var(--ease);backdrop-filter:blur(10px);font-size:0.85rem}
+.property-action-btn:hover{background:var(--gold);color:var(--white);transform:scale(1.1)}
+.property-action-btn.active{background:#ef4444;color:var(--white)}
+.property-price{position:absolute;bottom:14px;right:14px;padding:8px 14px;background:rgba(26,42,58,0.92);color:var(--gold);font-family:var(--serif);font-size:0.9rem;font-weight:700;border-radius:4px;backdrop-filter:blur(10px)}
+.property-details{padding:22px}
+.property-type{font-size:0.72rem;color:var(--gold);font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:8px}
+.property-title{font-size:1.1rem;margin-bottom:10px;color:var(--navy);line-height:1.3;font-family:var(--serif);font-weight:700;min-height:2.6em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.property-location{display:flex;align-items:center;gap:8px;color:var(--gray);font-size:0.85rem;margin-bottom:14px}
+.property-location i{color:var(--gold)}
+.property-features{display:flex;gap:14px;padding-top:14px;border-top:1px solid var(--gray-light);flex-wrap:wrap}
+.feature{display:flex;align-items:center;gap:5px;font-size:0.82rem;color:var(--gray)}
+.feature i{color:var(--gold);font-size:0.8rem}
+.property-footer{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:14px;border-top:1px solid var(--gray-light)}
+.property-roi{display:flex;align-items:center;gap:5px;font-size:0.8rem;font-weight:600;color:#10b981}
+.property-roi i{color:#10b981}
+.enquire-btn{font-size:0.8rem;font-weight:700;color:var(--navy);background:var(--gold);padding:7px 14px;border-radius:4px;display:flex;align-items:center;gap:5px;transition:all .3s var(--ease)}
+.enquire-btn:hover{background:var(--gold-light);gap:8px}
 
-  /* 3D Search Panel */
-  .search-panel {
-    background: rgba(18,18,18,0.98);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--gold-dim);
-    padding: 1.8rem 3rem;
-    transform: translateZ(20px);
-    animation: slideDown3D 0.6s 0.5s ease-out forwards;
-    position: relative;
-    z-index: 10;
-  }
-  @keyframes slideDown3D {
-    from { transform: translateY(-100%) translateZ(-30px); opacity: 0; }
-    to { transform: translateY(0) translateZ(20px); opacity: 1; }
-  }
-  .search-tabs { display: flex; gap: 0.2rem; margin-bottom: 1.2rem; }
-  .search-tab {
-    background: transparent;
-    border: none;
-    padding: 0.5rem 1.8rem;
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--stone);
-    cursor: pointer;
-    transition: 0.3s;
-    border-bottom: 2px solid transparent;
-  }
-  .search-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
-  .search-tab:hover { color: var(--gold-light); transform: translateY(-2px); }
-  .search-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr auto;
-    gap: 1rem;
-    background: transparent;
-  }
-  .search-field {
-    background: var(--dark-slate);
-    padding: 0.9rem 1rem;
-    border-radius: 12px;
-    border: 1px solid rgba(212,175,106,0.25);
-    transition: all 0.3s ease;
-  }
-  .search-field:focus-within {
-    border-color: var(--gold);
-    box-shadow: 0 0 0 2px var(--gold-dim);
-    transform: translateY(-2px) translateZ(10px);
-  }
-  .search-field label {
-    font-size: 0.6rem;
-    text-transform: uppercase;
-    color: var(--gold);
-    letter-spacing: 0.12em;
-    display: block;
-    margin-bottom: 0.3rem;
-  }
-  .dark-select {
-    background: var(--dark-slate);
-    border: none;
-    width: 100%;
-    color: var(--pearl);
-    font-family: var(--sans);
-    font-size: 0.9rem;
-    outline: none;
-    cursor: pointer;
-    appearance: none;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23D4AF6A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
-    background-repeat: no-repeat;
-    background-position: right 0.2rem center;
-    padding-right: 1.4rem;
-  }
-  .dark-select option { background: #1E1E1E; color: #F5EFE6; padding: 10px; }
-  .search-btn {
-    background: var(--gold);
-    border: none;
-    border-radius: 12px;
-    padding: 0 2rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: 0.3s;
-    color: var(--dark-void);
-    font-size: 0.8rem;
-  }
-  .search-btn:hover { background: var(--gold-light); transform: scale(1.02) translateZ(10px); box-shadow: 0 4px 20px rgba(212,175,106,0.4); }
-  #searchFeedback {
-    margin-top: 1rem;
-    font-size: 0.7rem;
-    color: var(--gold);
-    text-align: right;
-    letter-spacing: 0.3px;
-  }
+/* Load More */
+.load-more-wrap{text-align:center;margin-top:50px}
+.see-more-btn{padding:16px 40px;background:var(--navy);color:var(--white);border-radius:4px;font-weight:600;display:inline-flex;align-items:center;gap:10px;transition:all .3s var(--ease)}
+.see-more-btn:hover{background:var(--gold);color:var(--navy);transform:translateY(-3px);box-shadow:var(--shadow-gold)}
 
-  /* 3D Property Cards */
-  .property-grid {
-    display: grid;
-    grid-template-columns: 1.6fr 1fr 1fr;
-    gap: 2px;
-    background: rgba(212,175,106,0.08);
-    margin-top: 2rem;
-  }
-  .prop-card {
-    background: var(--dark-slate);
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    transition: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    transform-style: preserve-3d;
-    transform: translateZ(0);
-    animation: cardReveal3D 0.6s ease-out forwards;
-    opacity: 0;
-  }
-  .prop-card:nth-child(1) { animation-delay: 0.1s; }
-  .prop-card:nth-child(2) { animation-delay: 0.2s; }
-  .prop-card:nth-child(3) { animation-delay: 0.3s; }
-  .prop-card:nth-child(4) { animation-delay: 0.4s; }
-  .prop-card:nth-child(5) { animation-delay: 0.5s; }
-  @keyframes cardReveal3D {
-    from { opacity: 0; transform: translateY(40px) translateZ(-30px); }
-    to { opacity: 1; transform: translateY(0) translateZ(0); }
-  }
-  .prop-card:first-child { grid-row: span 2; }
-  .prop-card:hover {
-    transform: translateY(-12px) translateZ(30px) rotateX(2deg);
-    box-shadow: 0 30px 50px -20px rgba(0,0,0,0.6), 0 0 0 1px rgba(212,175,106,0.3);
-  }
-  .prop-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    filter: brightness(0.85);
-  }
-  .prop-card:hover .prop-img { transform: scale(1.08); filter: brightness(0.7); }
-  .prop-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(10,10,10,0.92) 0%, transparent 60%);
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-  }
-  .prop-badge {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    background: var(--gold);
-    color: #0A0A0A;
-    font-size: 0.6rem;
-    padding: 0.2rem 0.7rem;
-    font-weight: 600;
-    transition: transform 0.3s;
-  }
-  .prop-card:hover .prop-badge { transform: scale(1.1) translateZ(15px); }
+/* Featured Section */
+.featured-section{background:var(--white)}
 
-  /* 3D Why Section */
-  .why-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: center;
-  }
-  .why-image {
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 0.5s;
-  }
-  .why-image:hover { transform: translateZ(20px); }
-  .why-img {
-    width: 100%;
-    height: 500px;
-    object-fit: cover;
-    filter: brightness(0.85);
-    transition: transform 0.5s ease, filter 0.5s;
-  }
-  .why-image:hover .why-img { transform: scale(1.02); filter: brightness(0.75); }
-  .why-stat {
-    position: absolute;
-    bottom: -1rem;
-    right: -1rem;
-    background: var(--gold);
-    padding: 1.3rem;
-    width: 150px;
-    text-align: center;
-    transition: transform 0.3s;
-    transform: translateZ(30px);
-  }
-  .why-image:hover .why-stat { transform: scale(1.05) translateZ(40px); }
-  .feature {
-    display: flex;
-    gap: 1rem;
-    border-bottom: 1px solid var(--gold-dim);
-    padding-bottom: 1.2rem;
-    margin-bottom: 1.2rem;
-    transition: all 0.3s;
-  }
-  .feature:hover { transform: translateX(10px) translateZ(10px); border-bottom-color: var(--gold); }
-  .feature-icon {
-    width: 40px;
-    height: 40px;
-    border: 1px solid var(--gold-dim);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--gold);
-    transition: all 0.3s;
-  }
-  .feature:hover .feature-icon { border-color: var(--gold); background: rgba(212,175,106,0.1); transform: rotateY(10deg); }
+/* Full Browser */
+.browser-section{background:var(--off-white);padding:80px 0}
+.browser-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;flex-wrap:wrap;gap:20px}
+.browser-title{font-size:1.8rem;color:var(--navy)}
+.browser-count{color:var(--gray);font-size:0.95rem}
+.browser-count strong{color:var(--gold);font-weight:700}
+.pagination{display:flex;justify-content:center;gap:8px;margin-top:40px;flex-wrap:wrap}
+.page-btn{width:40px;height:40px;border-radius:8px;background:var(--white);color:var(--navy);display:flex;align-items:center;justify-content:center;font-weight:600;transition:all .3s var(--ease);border:1px solid var(--gray-light)}
+.page-btn:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.page-btn.active{background:var(--navy);color:var(--gold);border-color:var(--navy)}
+.page-btn:disabled{opacity:0.4;cursor:not-allowed}
 
-  /* 3D Areas Grid */
-  .areas-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    background: rgba(212,175,106,0.08);
-    margin-top: 2rem;
-  }
-  .area-card {
-    position: relative;
-    overflow: hidden;
-    height: 280px;
-    cursor: pointer;
-    transition: all 0.4s;
-  }
-  .area-card:hover { transform: translateZ(25px) scale(1.02); z-index: 10; }
-  .area-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    filter: brightness(0.7);
-  }
-  .area-card:hover .area-img { transform: scale(1.1); filter: brightness(0.55); }
-  .area-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, #0A0A0A 0%, transparent 50%);
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-  }
-  .area-name { font-family: var(--serif); font-size: 1.2rem; font-weight: 500; transition: transform 0.3s; }
-  .area-card:hover .area-name { transform: translateY(-5px) translateZ(10px); color: var(--gold-light); }
+/* Areas Grid */
+.areas-section{background:var(--white)}
+.areas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.area-card{position:relative;height:180px;border-radius:12px;overflow:hidden;cursor:pointer;transition:all .4s var(--ease)}
+.area-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.area-card img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.area-card:hover img{transform:scale(1.1)}
+.area-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,26,38,0.9) 0%,rgba(15,26,38,0.3) 60%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:20px;color:var(--white)}
+.area-name{font-family:var(--serif);font-size:1.15rem;font-weight:700;margin-bottom:4px}
+.area-count{font-size:0.78rem;color:var(--gold);font-weight:600;letter-spacing:1px;text-transform:uppercase}
 
-  /* 3D Service Cards */
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 2px;
-    background: rgba(212,175,106,0.05);
-    margin-top: 2rem;
-  }
-  .service-card {
-    background: var(--dark-slate);
-    padding: 2rem;
-    transition: all 0.4s ease;
-    transform-style: preserve-3d;
-  }
-  .service-card:hover {
-    background: #242424;
-    transform: translateY(-8px) translateZ(20px) rotateX(2deg);
-    box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
-  }
-  .service-num {
-    font-family: var(--serif);
-    font-size: 2.6rem;
-    font-weight: 300;
-    color: var(--gold-dim);
-    margin-bottom: 0.8rem;
-    transition: color 0.3s, transform 0.3s;
-  }
-  .service-card:hover .service-num { color: var(--gold); transform: translateZ(15px); }
+/* Tools */
+.tools-section{background:var(--off-white)}
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.tool-card{padding:36px 28px;background:var(--white);border-radius:14px;border:1px solid var(--gray-light);transition:all .4s var(--ease);cursor:pointer;position:relative;overflow:hidden}
+.tool-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-dark));transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.tool-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);border-color:var(--gold)}
+.tool-card:hover::before{transform:scaleX(1)}
+.tool-icon{width:64px;height:64px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));border-radius:14px;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:1.6rem;margin-bottom:20px;box-shadow:var(--shadow-gold)}
+.tool-card h3{font-size:1.2rem;margin-bottom:10px;color:var(--navy)}
+.tool-card p{font-size:0.9rem;color:var(--gray);line-height:1.7;margin-bottom:16px}
+.tool-link{display:inline-flex;align-items:center;gap:8px;color:var(--gold);font-weight:600;font-size:0.88rem;transition:gap .3s var(--ease)}
+.tool-link:hover{gap:12px}
 
-  /* 3D Calculator */
-  .calculator-card {
-    background: var(--dark-slate);
-    border-radius: 20px;
-    padding: 2rem;
-    margin-top: 2rem;
-    border: 1px solid var(--gold-dim);
-    transition: all 0.4s;
-    transform-style: preserve-3d;
-  }
-  .calculator-card:hover { transform: translateY(-6px) translateZ(15px); box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5); }
-  .calc-input {
-    background: #252525;
-    border: 1px solid #3a3a3a;
-    padding: 0.7rem;
-    border-radius: 12px;
-    color: var(--pearl);
-    width: 100%;
-    margin-top: 0.3rem;
-    transition: all 0.3s;
-  }
-  .calc-input:focus {
-    border-color: var(--gold);
-    outline: none;
-    box-shadow: 0 0 0 2px var(--gold-dim);
-    transform: translateZ(5px);
-  }
+/* Testimonials */
+.testimonials{background:var(--navy);color:var(--white);position:relative;overflow:hidden}
+.testimonials::before{content:'';position:absolute;top:-150px;right:-150px;width:500px;height:500px;background:radial-gradient(circle,var(--gold) 0%,transparent 70%);opacity:0.08;border-radius:50%}
+.testimonials .section-title{color:var(--white)}
+.testimonials .section-subtitle{color:rgba(255,255,255,0.7)}
+.google-rating{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:40px;padding:16px 28px;background:rgba(255,255,255,0.05);border:1px solid rgba(201,169,110,0.25);border-radius:100px;width:fit-content;margin-left:auto;margin-right:auto}
+.google-rating .rating-text{font-weight:700;font-size:1.1rem;color:var(--gold)}
+.google-rating .rating-sub{font-size:0.85rem;color:rgba(255,255,255,0.7)}
+.google-stars{color:var(--gold);font-size:1.1rem}
+.testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:28px;position:relative;z-index:2}
+.testimonial-card{padding:36px;background:rgba(255,255,255,0.04);backdrop-filter:blur(12px);border:1px solid rgba(201,169,110,0.2);border-radius:14px;transition:all .4s var(--ease)}
+.testimonial-card:hover{background:rgba(201,169,110,0.08);border-color:var(--gold);transform:translateY(-6px)}
+.testimonial-stars{color:var(--gold);margin-bottom:18px;font-size:0.9rem;letter-spacing:2px}
+.testimonial-text{font-size:1.02rem;line-height:1.8;margin-bottom:26px;color:rgba(255,255,255,0.9);font-style:italic}
+.testimonial-author{display:flex;align-items:center;gap:14px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.1)}
+.author-avatar{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-dark));display:flex;align-items:center;justify-content:center;color:var(--navy);font-weight:700;font-size:1.1rem;font-family:var(--serif)}
+.author-info h4{font-family:var(--sans);font-size:1rem;font-weight:600;margin-bottom:3px}
+.author-info p{font-size:0.82rem;color:var(--gold)}
 
-  /* 3D Testimonials */
-  .testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 2px;
-    background: rgba(212,175,106,0.08);
-  }
-  .testimonial {
-    background: var(--dark-slate);
-    padding: 2rem;
-    transition: all 0.4s;
-  }
-  .testimonial:hover {
-    transform: translateY(-8px) translateZ(20px);
-    background: #202020;
-    box-shadow: 0 15px 30px -10px rgba(0,0,0,0.4);
-  }
-  .stars { color: var(--gold); margin-bottom: 0.8rem; letter-spacing: 2px; }
+/* Partners */
+.partners{background:var(--white);padding:80px 0;border-top:1px solid var(--gray-light);border-bottom:1px solid var(--gray-light)}
+.partners-header{text-align:center;margin-bottom:50px}
+.partners-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:20px;align-items:center}
+.partner-logo{padding:24px 20px;background:var(--off-white);border-radius:10px;text-align:center;transition:all .3s var(--ease);border:1px solid transparent;font-family:var(--serif);font-weight:700;color:var(--navy);font-size:0.95rem}
+.partner-logo:hover{background:var(--white);border-color:var(--gold);transform:translateY(-4px);box-shadow:var(--shadow-md);color:var(--gold)}
 
-  /* 3D CTA */
-  .cta {
-    text-align: center;
-    background: linear-gradient(rgba(10,10,10,0.92), rgba(10,10,10,0.92)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffc?w=1600&q=80') center/cover fixed;
-    padding: 5rem 2rem;
-    transform-style: preserve-3d;
-  }
-  .cta-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    max-width: 460px;
-    margin: 0 auto;
-  }
-  .cta-input-group {
-    display: flex;
-    gap: 1rem;
-  }
-  .cta-input {
-    flex: 1;
-    background: #222;
-    border: 1px solid var(--gold-dim);
-    padding: 0.9rem 1.2rem;
-    color: white;
-    outline: none;
-    border-radius: 8px;
-    transition: all 0.3s;
-  }
-  .cta-input:focus { border-color: var(--gold); transform: translateZ(5px); box-shadow: 0 0 0 2px var(--gold-dim); }
+/* Contact */
+.contact{background:var(--off-white)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.contact-info h3{font-size:2rem;margin-bottom:20px;color:var(--navy)}
+.contact-info>p{color:var(--gray);margin-bottom:36px;line-height:1.8}
+.contact-details{list-style:none;margin-bottom:36px}
+.contact-details li{display:flex;align-items:flex-start;gap:18px;padding:18px 0;border-bottom:1px solid var(--gray-light)}
+.contact-details li:last-child{border-bottom:none}
+.contact-icon{width:50px;height:50px;background:rgba(201,169,110,0.12);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.1rem;flex-shrink:0}
+.contact-text h4{font-family:var(--sans);font-size:0.95rem;font-weight:600;margin-bottom:4px;color:var(--navy)}
+.contact-text p,.contact-text a{color:var(--gray);font-size:0.95rem}
+.contact-text a:hover{color:var(--gold)}
+.contact-form{padding:42px;background:var(--white);border-radius:14px;box-shadow:var(--shadow-lg);border:1px solid var(--gray-light)}
+.form-group{margin-bottom:20px}
+.form-group label{display:block;font-size:0.88rem;font-weight:600;margin-bottom:8px;color:var(--navy)}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:14px 18px;border:1px solid var(--gray-light);border-radius:6px;font-family:var(--sans);font-size:0.95rem;color:var(--navy);background:var(--off-white);transition:all .3s var(--ease)}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--gold);background:var(--white);box-shadow:0 0 0 3px rgba(201,169,110,0.15)}
+.form-group textarea{resize:vertical;min-height:120px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.btn-submit{width:100%;justify-content:center}
 
-  footer {
-    background: #050505;
-    padding: 4rem 3rem 2rem;
-    border-top: 1px solid var(--gold-dim);
-  }
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1.8fr 1fr 1fr 1fr;
-    gap: 2rem;
-    margin-bottom: 2.5rem;
-  }
-  .footer-col h4 {
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1rem;
-  }
-  .footer-col ul { list-style: none; }
-  .footer-col li { margin-bottom: 0.5rem; }
-  .footer-col a { text-decoration: none; color: var(--stone); font-size: 0.8rem; transition: all 0.3s; display: inline-block; }
-  .footer-col a:hover { color: var(--gold); transform: translateX(5px) translateZ(5px); }
-  .footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.7rem;
-    color: var(--stone);
-    border-top: 1px solid rgba(212,175,106,0.1);
-    padding-top: 2rem;
-  }
+/* Footer */
+.footer{background:var(--navy-dark);color:var(--white);padding:80px 0 30px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:50px;margin-bottom:60px}
+.footer-brand .logo{margin-bottom:20px}
+.footer-brand p{color:rgba(255,255,255,0.7);line-height:1.8;margin-bottom:24px;font-size:0.93rem}
+.social-links{display:flex;gap:12px}
+.social-links a{width:42px;height:42px;background:rgba(255,255,255,0.06);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--white);transition:all .3s var(--ease);border:1px solid rgba(201,169,110,0.2)}
+.social-links a:hover{background:var(--gold);color:var(--navy);transform:translateY(-4px);border-color:var(--gold)}
+.footer-col h4{font-family:var(--sans);font-size:0.92rem;font-weight:700;margin-bottom:24px;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase}
+.footer-col ul li{margin-bottom:12px}
+.footer-col ul a{color:rgba(255,255,255,0.7);font-size:0.9rem;transition:all .3s var(--ease)}
+.footer-col ul a:hover{color:var(--gold);padding-left:6px}
+.footer-bottom{padding-top:30px;border-top:1px solid rgba(255,255,255,0.1);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-size:0.88rem;color:rgba(255,255,255,0.6)}
+.footer-bottom a{color:var(--gold)}
 
-  /* Scroll reveal 3D */
-  .reveal {
-    opacity: 0;
-    transform: translateY(40px) translateZ(-30px);
-    transition: all 0.8s cubic-bezier(0.2, 0.8, 0.3, 1);
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0) translateZ(0);
-  }
+/* Floating */
+.whatsapp-float{position:fixed;bottom:30px;right:30px;width:60px;height:60px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:1.8rem;box-shadow:0 10px 30px rgba(37,211,102,0.4);z-index:999;transition:all .3s var(--ease);animation:pulse 2s infinite}
+.whatsapp-float:hover{transform:scale(1.1)}
+@keyframes pulse{0%,100%{box-shadow:0 10px 30px rgba(37,211,102,0.4)}50%{box-shadow:0 10px 30px rgba(37,211,102,0.7)}}
+.back-to-top{position:fixed;bottom:100px;right:30px;width:48px;height:48px;background:var(--gold);color:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:998;opacity:0;visibility:hidden;transition:all .3s var(--ease);box-shadow:var(--shadow-md)}
+.back-to-top.visible{opacity:1;visibility:visible}
+.back-to-top:hover{background:var(--gold-light);transform:translateY(-4px)}
 
-  @media (max-width: 1000px) {
-    .nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
-    .hero { padding: 0 1.5rem 3rem; }
-    .hero-stats { display: none; }
-    .search-grid { grid-template-columns: 1fr; gap: 0.8rem; }
-    .property-grid { grid-template-columns: 1fr; }
-    .why-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .areas-grid { grid-template-columns: 1fr; }
-    .services-grid { grid-template-columns: 1fr; }
-    .testimonial-grid { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr; }
-    section { padding: 3rem 1.5rem; }
-    .cta-input-group { flex-direction: column; }
-  }
+/* Modal */
+.modal{position:fixed;inset:0;background:rgba(10,19,32,0.85);backdrop-filter:blur(8px);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px}
+.modal.active{display:flex}
+.modal-content{background:var(--white);border-radius:16px;max-width:600px;width:100%;max-height:90vh;overflow-y:auto;position:relative;animation:slideUp .4s var(--ease)}
+@keyframes slideUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-header{padding:28px 32px;border-bottom:1px solid var(--gray-light);display:flex;justify-content:space-between;align-items:center;background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 100%);color:var(--white);border-radius:16px 16px 0 0}
+.modal-header h3{font-size:1.3rem;color:var(--white)}
+.modal-close{width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--white);transition:all .3s var(--ease)}
+.modal-close:hover{background:var(--gold);color:var(--navy);transform:rotate(90deg)}
+.modal-body{padding:32px}
+.modal-body label{display:block;font-size:0.85rem;font-weight:600;margin-bottom:8px;color:var(--navy)}
+.modal-body input,.modal-body select{width:100%;padding:12px 16px;border:1px solid var(--gray-light);border-radius:8px;font-family:var(--sans);font-size:0.95rem;background:var(--off-white);color:var(--navy);margin-bottom:18px;transition:all .3s var(--ease)}
+.modal-body input:focus,.modal-body select:focus{outline:none;border-color:var(--gold);background:var(--white);box-shadow:0 0 0 3px rgba(201,169,110,0.15)}
+.modal-result{margin-top:24px;padding:24px;background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 100%);border-radius:12px;color:var(--white)}
+.result-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.1)}
+.result-row:last-child{border-bottom:none}
+.result-row.highlight{padding:16px 0;border-top:2px solid var(--gold);border-bottom:none;margin-top:8px}
+.result-label{font-size:0.88rem;opacity:0.8}
+.result-value{font-weight:700;color:var(--gold);font-size:1.1rem;font-family:var(--serif)}
+.result-value.big{font-size:1.5rem}
 
-  /* Parallax scrolling effect */
-  .parallax {
-    transition: transform 0.1s linear;
-    will-change: transform;
-  }
+/* Toast */
+.toast{position:fixed;top:100px;right:30px;background:var(--navy);color:var(--white);padding:16px 24px;border-radius:10px;box-shadow:var(--shadow-lg);z-index:3000;display:flex;align-items:center;gap:12px;transform:translateX(400px);transition:transform .4s var(--ease);border-left:4px solid var(--gold);max-width:320px}
+.toast.show{transform:translateX(0)}
+.toast i{color:var(--gold);font-size:1.2rem}
+
+/* Animations */
+.fade-in{opacity:0;transform:translateY(40px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+.fade-in-left{opacity:0;transform:translateX(-40px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.fade-in-left.visible{opacity:1;transform:translateX(0)}
+.fade-in-right{opacity:0;transform:translateX(40px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.fade-in-right.visible{opacity:1;transform:translateX(0)}
+
+/* Responsive */
+@media (max-width:1200px){.search-fields{grid-template-columns:1fr 1fr 1fr}}
+@media (max-width:968px){.contact-grid{grid-template-columns:1fr;gap:50px}.footer-grid{grid-template-columns:1fr 1fr}.search-fields{grid-template-columns:1fr 1fr}}
+@media (max-width:768px){.section{padding:70px 0}.nav-links{position:fixed;top:0;right:-100%;width:85%;max-width:340px;height:100vh;background:var(--navy-dark);flex-direction:column;justify-content:center;padding:40px;gap:24px;transition:right .4s var(--ease);box-shadow:-10px 0 40px rgba(0,0,0,0.4)}.nav-links.active{right:0}.mobile-toggle{display:block;z-index:1001}.hero-bg{background-attachment:scroll}.footer-grid{grid-template-columns:1fr;gap:40px}.form-row{grid-template-columns:1fr}.section-label::before,.section-label::after{display:none}.section-label{padding:0}.search-fields{grid-template-columns:1fr}.nav-icon-btn{width:36px;height:36px;font-size:0.9rem}.hero-stats-bar{gap:24px}.hero-stat-num{font-size:1.5rem}}
+@media (max-width:480px){.btn{padding:12px 24px;font-size:0.85rem}.contact-form{padding:28px 20px}.whatsapp-float{width:54px;height:54px;font-size:1.6rem;bottom:20px;right:20px}.back-to-top{bottom:85px;right:20px}}
 </style>
 </head>
 <body>
-<div class="perspective-wrapper">
 
-<nav class="nav" id="navbar">
-  <a href="#" class="logo">Milestone <span>Homes</span></a>
-  <ul class="nav-links">
-    <li><a href="#properties">Estates</a></li>
-    <li><a href="#areas">Enclaves</a></li>
-    <li><a href="#calculator">Mortgage</a></li>
-    <li><a href="#contact">Connect</a></li>
-  </ul>
-  <a href="#contact" class="nav-cta">Inquire Now</a>
+<!-- LOADER -->
+<div class="loader" id="loader">
+<img src="https://milestonehomesre.com/wp-content/uploads/2024/09/New-Logo-Cross.png" alt="Milestone Homes" class="loader-logo">
+<div class="loader-bar"></div>
+<div class="loader-text">Loading Premium Properties...</div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+<div class="container">
+<a href="#home" class="logo">
+<img src="https://milestonehomesre.com/wp-content/uploads/2024/09/New-Logo-Cross.png" alt="Milestone Homes" class="logo-img">
+<span class="logo-text">Milestone <span>Homes</span></span>
+</a>
+<ul class="nav-links" id="navLinks">
+<li><a href="#home">Home</a></li>
+<li><a href="#featured">Featured</a></li>
+<li><a href="#browse">Browse All</a></li>
+<li><a href="#areas">Areas</a></li>
+<li><a href="#tools">Tools</a></li>
+<li><a href="#contact" class="nav-cta">Contact Us</a></li>
+</ul>
+<div class="nav-actions">
+<button class="nav-icon-btn" id="favBtn" aria-label="Favorites"><i class="fas fa-heart"></i><span class="nav-badge" id="favCount"></span></button>
+<button class="nav-icon-btn" id="compareBtn" aria-label="Compare"><i class="fas fa-balance-scale"></i><span class="nav-badge" id="compareCount"></span></button>
+<button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
+</div>
+</div>
 </nav>
 
-<!-- Hero -->
+<!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <div class="hero-badge">Dubai's most distinguished real estate house</div>
-    <h1>Your <em>milestone</em><br>awaits in Dubai</h1>
-    <p class="hero-sub">Off-plan pioneers · bespoke portfolios · global expertise since 2016</p>
-    <div class="hero-buttons">
-      <a href="#properties" class="btn-primary">Discover Homes</a>
-      <a href="#contact" class="btn-outline">Private Consultation</a>
-    </div>
-  </div>
-  <div class="hero-stats">
-    <div class="stat-item"><div class="number">5000+</div><div class="label">Clients Served</div></div>
-    <div class="stat-divider"></div>
-    <div class="stat-item"><div class="number">AED 4.2B+</div><div class="label">Transaction Value</div></div>
-  </div>
-</section>
+<div class="hero-bg" id="heroBg"></div>
+<div class="hero-overlay"></div>
+<div class="hero-content">
+<div class="hero-badge"><i class="fas fa-award"></i> Since 2016 · RERA Licensed · 10,000+ Properties</div>
+<h1 class="hero-title">Find Your <span class="accent">Dream Home</span><br>in the UAE</h1>
+<p class="hero-subtitle">Browse 10,000+ luxury properties across Dubai's most prestigious locations. Villas, apartments, penthouses and off-plan investments with expert guidance.</p>
 
-<!-- Search Panel -->
-<div class="search-panel">
-  <div class="search-tabs">
-    <button class="search-tab active" data-tab="buy">Buy</button>
-    <button class="search-tab" data-tab="rent">Rent</button>
-    <button class="search-tab" data-tab="offplan">Off-Plan</button>
-  </div>
-  <div class="search-grid">
-    <div class="search-field"><label>📍 Location</label><select id="locationSelect" class="dark-select"><option>All Dubai</option><option>Downtown Dubai</option><option>Palm Jumeirah</option><option>Dubai Marina</option><option>Dubai Hills Estate</option></select></div>
-    <div class="search-field"><label>🏡 Property Type</label><select id="typeSelect" class="dark-select"><option>Any</option><option>Penthouse</option><option>Villa</option><option>Apartment</option></select></div>
-    <div class="search-field"><label>💰 Budget (AED)</label><select id="budgetSelect" class="dark-select"><option>Any</option><option>Under 2M</option><option>2M – 5M</option><option>5M – 10M</option><option>10M+</option></select></div>
-    <div class="search-field"><label>🔑 Bedrooms</label><select id="bedsSelect" class="dark-select"><option>Any</option><option>1</option><option>2</option><option>3</option><option>4+</option></select></div>
-    <button class="search-btn" id="searchTrigger">Search →</button>
-  </div>
-  <div id="searchFeedback"></div>
+<div class="hero-stats-bar">
+<div class="hero-stat"><span class="hero-stat-num">10,000+</span><span class="hero-stat-label">Properties</span></div>
+<div class="hero-stat"><span class="hero-stat-num">40+</span><span class="hero-stat-label">Dubai Areas</span></div>
+<div class="hero-stat"><span class="hero-stat-num">82</span><span class="hero-stat-label">5★ Reviews</span></div>
+<div class="hero-stat"><span class="hero-stat-num">15+</span><span class="hero-stat-label">Top Developers</span></div>
 </div>
 
-<!-- Featured Properties -->
-<section id="properties" class="reveal">
-  <div class="section-tag">Curated portfolio</div>
-  <h2 class="section-title">Exceptional <em>residences</em></h2>
-  <div class="property-grid">
-    <div class="prop-card"><span class="prop-badge">Iconic</span><img class="prop-img" src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=900&q=80" alt="Penthouse"><div class="prop-overlay"><div class="prop-type">Palm Jumeirah · Penthouse</div><div class="prop-name">Sky Villa Collection</div><div class="prop-price">AED 18.5M</div><div class="prop-meta"><span>4 Beds</span><span>6,200 sqft</span></div></div></div>
-    <div class="prop-card"><img class="prop-img" src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=600&q=80" alt="Villa"><div class="prop-overlay"><div class="prop-type">Dubai Hills · Villa</div><div class="prop-name">Maple Grove Estate</div><div class="prop-price">AED 7.2M</div><div class="prop-meta"><span>5 Beds</span><span>4,100 sqft</span></div></div></div>
-    <div class="prop-card"><span class="prop-badge">Off-Plan</span><img class="prop-img" src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=80" alt="Downtown"><div class="prop-overlay"><div class="prop-type">Downtown Dubai</div><div class="prop-name">Burj Crown Residence</div><div class="prop-price">AED 3.4M</div><div class="prop-meta"><span>2 Beds</span><span>1,450 sqft</span></div></div></div>
-    <div class="prop-card"><span class="prop-badge">Prime Location</span><img class="prop-img" src="https://images.unsplash.com/photo-1546412414-e1885259563a?w=600&q=80" alt="Downtown Dubai"><div class="prop-overlay"><div class="prop-type">Downtown Dubai · Boulevard</div><div class="prop-name">Burj View Heights</div><div class="prop-price">AED 4.2M</div><div class="prop-meta"><span>3 Beds</span><span>2,100 sqft</span></div></div></div>
-    <div class="prop-card"><img class="prop-img" src="https://images.unsplash.com/photo-1582063289852-62e3ba2747f8?w=600&q=80" alt="Studio"><div class="prop-overlay"><div class="prop-type">Dubai Marina</div><div class="prop-name">Marina Gate Studio</div><div class="prop-price">AED 890K</div><div class="prop-meta"><span>Studio</span><span>480 sqft</span></div></div></div>
-  </div>
+<!-- SEARCH BAR -->
+<div class="search-bar">
+<div class="search-tabs">
+<button class="search-tab active" data-status="buy">Buy</button>
+<button class="search-tab" data-status="new-launch">New Launch</button>
+<button class="search-tab" data-status="rent">Rent</button>
+<button class="search-tab" data-status="off-plan">Off-Plan</button>
+</div>
+<div class="search-fields">
+<div class="search-field">
+<label>Location</label>
+<select id="searchLocation"><option value="">All Dubai Areas</option></select>
+</div>
+<div class="search-field">
+<label>Property Type</label>
+<select id="searchType"><option value="">All Types</option><option>Apartment</option><option>Villa</option><option>Penthouse</option><option>Townhouse</option><option>Studio</option><option>Duplex</option><option>Mansion</option><option>Condo</option></select>
+</div>
+<div class="search-field">
+<label>Bedrooms</label>
+<select id="searchBeds"><option value="">Any</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option><option value="5">5+</option><option value="6">6+</option></select>
+</div>
+<div class="search-field">
+<label>Developer</label>
+<select id="searchDeveloper"><option value="">All Developers</option></select>
+</div>
+<div class="search-field">
+<label>Max Price</label>
+<select id="searchPrice"><option value="">Any</option><option value="1000000">AED 1M</option><option value="5000000">AED 5M</option><option value="10000000">AED 10M</option><option value="25000000">AED 25M</option><option value="50000000">AED 50M</option><option value="100000000">AED 100M</option></select>
+</div>
+<button class="search-btn" id="searchBtn"><i class="fas fa-search"></i> Search</button>
+</div>
+<div class="search-count">Showing <strong id="resultCount">10,000+</strong> properties across Dubai</div>
+</div>
+</div>
 </section>
 
-<!-- Why Milestone -->
-<section class="why-grid reveal" style="padding: 4rem 3rem;">
-  <div class="why-image"><img class="why-img" src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=900&q=80" alt="Luxury consultation"><div class="why-stat"><div class="big">9+ Years</div><div style="font-size:0.65rem;">Unbroken excellence</div></div></div>
-  <div><div class="section-tag">Why Milestone</div><h2 class="section-title">Where vision meets <em>legacy</em></h2>
-    <div class="feature"><div class="feature-icon">◈</div><div><div class="feature-title">Gold‑Class Advisory</div><div style="font-size:0.85rem;">Tailored journey from search to signature — white‑glove.</div></div></div>
-    <div class="feature"><div class="feature-icon">◈</div><div><div class="feature-title">Direct Developer Access</div><div style="font-size:0.85rem;">Priority allocations on Emaar, DAMAC, Ellington.</div></div></div>
-    <div class="feature"><div class="feature-icon">◈</div><div><div class="feature-title">Investment Intelligence</div><div style="font-size:0.85rem;">Data‑driven ROI forecasts and portfolio strategy.</div></div></div>
-  </div>
+<!-- FEATURED PROPERTIES (6) -->
+<section class="section featured-section" id="featured">
+<div class="container">
+<div class="section-header fade-in">
+<span class="section-label">Featured Listings</span>
+<h2 class="section-title">Exclusive Premium Properties</h2>
+<p class="section-subtitle">Handpicked luxury residences from Dubai's most sought-after locations — curated by our expert advisors.</p>
+</div>
+<div class="properties-grid" id="featuredGrid"></div>
+</div>
 </section>
 
-<!-- Areas -->
-<section id="areas" class="reveal">
-  <div class="section-tag">Prime destinations</div>
-  <h2 class="section-title">Dubai's most <em>sought‑after</em> enclaves</h2>
-  <div class="areas-grid">
-    <div class="area-card" data-area="Palm Jumeirah"><img class="area-img" src="https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?w=600&q=80" alt="Palm"><div class="area-overlay"><div class="area-name">Palm Jumeirah</div><div class="area-count">42 listings</div></div></div>
-    <div class="area-card" data-area="Downtown Dubai"><img class="area-img" src="https://images.unsplash.com/photo-1549421853-f3290960e0d3?w=600&q=80" alt="Downtown"><div class="area-overlay"><div class="area-name">Downtown Dubai</div><div class="area-count">38 listings</div></div></div>
-    <div class="area-card" data-area="Dubai Marina"><img class="area-img" src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=600&q=80" alt="Marina"><div class="area-overlay"><div class="area-name">Dubai Marina</div><div class="area-count">65 listings</div></div></div>
-  </div>
+<!-- POPULAR AREAS -->
+<section class="section areas-section" id="areas">
+<div class="container">
+<div class="section-header fade-in">
+<span class="section-label">Explore Dubai</span>
+<h2 class="section-title">Popular Areas in Dubai</h2>
+<p class="section-subtitle">Find out more about the real estate market in UAE. Explore wide range of ready & off-plan properties with our expert property advisor.</p>
+</div>
+<div class="areas-grid" id="areasGrid"></div>
+</div>
 </section>
 
-<!-- Services -->
-<section class="reveal">
-  <div class="section-tag">Concierge services</div>
-  <h2 class="section-title">Beyond <em>real estate</em></h2>
-  <div class="services-grid">
-    <div class="service-card"><div class="service-num">01</div><div class="service-title" style="font-weight:500;">Private Sales</div><div>Off-market luxury with discretion.</div></div>
-    <div class="service-card"><div class="service-num">02</div><div class="service-title" style="font-weight:500;">Off‑Plan Mastery</div><div>First access to launches.</div></div>
-    <div class="service-card"><div class="service-num">03</div><div class="service-title" style="font-weight:500;">Mortgage & Legal</div><div>Seamless financing.</div></div>
-  </div>
+<!-- BROWSE ALL PROPERTIES (50 per page) -->
+<section class="browser-section" id="browse">
+<div class="container">
+<div class="section-header fade-in">
+<span class="section-label">Full Property Browser</span>
+<h2 class="section-title">All Dubai Properties</h2>
+<p class="section-subtitle">Browse our complete collection of 10,000+ premium properties across Dubai.</p>
+</div>
+<div class="browser-header">
+<h3 class="browser-title">Search Results</h3>
+<div class="browser-count">Showing <strong id="browserCount">0</strong> properties</div>
+</div>
+<div class="properties-grid" id="browserGrid"></div>
+<div class="pagination" id="pagination"></div>
+</div>
 </section>
 
-<!-- Mortgage Calculator -->
-<section id="calculator" class="reveal" style="padding-top: 0;">
-  <div class="calculator-card"><div class="section-tag">Financial Tool</div><h3 class="section-title" style="margin-bottom:0.5rem;">Mortgage <em>Estimator</em></h3>
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
-      <div><label>Property Price (AED)</label><input type="number" id="priceInput" class="calc-input" value="3500000"></div>
-      <div><label>Down Payment (%)</label><input type="number" id="downPayment" class="calc-input" value="20"></div>
-      <div><label>Interest Rate (%)</label><input type="number" id="rateInput" class="calc-input" value="4.5"></div>
-      <div><label>Loan Term (years)</label><input type="number" id="yearsInput" class="calc-input" value="25"></div>
-    </div>
-    <button id="calcBtn" class="btn-primary" style="margin-top:1.5rem; width:100%;">Calculate Monthly Payment</button>
-    <div id="calcResult" class="calc-result" style="margin-top:1.5rem; background:rgba(212,175,106,0.1); padding:1rem; border-radius:16px;">📊 Estimated monthly payment: AED 0</div>
-  </div>
+<!-- TOOLS -->
+<section class="section tools-section" id="tools">
+<div class="container">
+<div class="section-header fade-in">
+<span class="section-label">Smart Tools</span>
+<h2 class="section-title">Free Property Calculators</h2>
+<p class="section-subtitle">Make informed decisions with our UAE-specific real estate calculators. No sign-up required.</p>
+</div>
+<div class="tools-grid">
+<div class="tool-card fade-in" onclick="openModal('mortgageModal')"><div class="tool-icon"><i class="fas fa-calculator"></i></div><h3>Mortgage Calculator</h3><p>Calculate monthly payments with UAE-specific rules: 25x salary multiplier, 50% debt burden ratio, and current rates.</p><span class="tool-link">Calculate Now <i class="fas fa-arrow-right"></i></span></div>
+<div class="tool-card fade-in" onclick="openModal('dldModal')"><div class="tool-icon"><i class="fas fa-file-contract"></i></div><h3>DLD Fee Calculator</h3><p>Know your exact Dubai Land Department fees, trustee fees, registration costs & total acquisition cost.</p><span class="tool-link">Calculate Now <i class="fas fa-arrow-right"></i></span></div>
+<div class="tool-card fade-in" onclick="openModal('roiModal')"><div class="tool-icon"><i class="fas fa-chart-line"></i></div><h3>Rental Yield (ROI)</h3><p>Calculate gross & net rental yield for any Dubai property. Compare with market averages.</p><span class="tool-link">Calculate Now <i class="fas fa-arrow-right"></i></span></div>
+<div class="tool-card fade-in" onclick="openModal('visaModal')"><div class="tool-icon"><i class="fas fa-passport"></i></div><h3>Golden Visa Eligibility</h3><p>Check if your property investment qualifies for UAE Golden Visa (2, 5, or 10-year residency).</p><span class="tool-link">Check Eligibility <i class="fas fa-arrow-right"></i></span></div>
+<div class="tool-card fade-in" onclick="openModal('affordModal')"><div class="tool-icon"><i class="fas fa-wallet"></i></div><h3>Affordability Checker</h3><p>Based on your salary & expenses, find out how much property you can afford in Dubai.</p><span class="tool-link">Check Now <i class="fas fa-arrow-right"></i></span></div>
+<div class="tool-card fade-in" onclick="openModal('currencyModal')"><div class="tool-icon"><i class="fas fa-exchange-alt"></i></div><h3>Currency Converter</h3><p>Convert AED to USD, EUR, GBP, INR, PKR, and 20+ currencies at live rates.</p><span class="tool-link">Convert Now <i class="fas fa-arrow-right"></i></span></div>
+</div>
+</div>
 </section>
 
-<!-- Testimonials -->
-<section class="reveal"><div class="section-tag">Client chronicles</div><h2 class="section-title">Words of <em>trust</em></h2>
-  <div class="testimonial-grid">
-    <div class="testimonial"><div class="stars">★★★★★</div><div class="testimonial-text">"Milestone Homes orchestrated our off‑plan investment flawlessly."</div><div><strong>Ahmed Al Mansoori</strong></div></div>
-    <div class="testimonial"><div class="stars">★★★★★</div><div class="testimonial-text">"Impeccable service. We found our dream penthouse."</div><div><strong>Sarah Mitchell</strong></div></div>
-    <div class="testimonial"><div class="stars">★★★★★</div><div class="testimonial-text">"True experts in Dubai luxury market."</div><div><strong>Ravi Sharma</strong></div></div>
-  </div>
+<!-- TESTIMONIALS -->
+<section class="section testimonials" id="testimonials">
+<div class="container">
+<div class="section-header fade-in">
+<span class="section-label">Client Testimonials</span>
+<h2 class="section-title">What Our Clients Say</h2>
+<p class="section-subtitle">Our agents are knowledgeable, professional and dedicated to everyone's satisfaction.</p>
+</div>
+<div class="google-rating fade-in">
+<div><div class="rating-text">EXCELLENT</div><div class="rating-sub">Based on 82 reviews</div></div>
+<div class="google-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+<div style="color:var(--white);font-size:0.85rem"><i class="fab fa-google" style="margin-right:6px"></i> Google</div>
+</div>
+<div class="testimonials-grid">
+<div class="testimonial-card fade-in"><div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="testimonial-text">"Great productivity! A very good company as well as the customer service. Just loved it!"</p><div class="testimonial-author"><div class="author-avatar">MB</div><div class="author-info"><h4>Minanshar Banu</h4><p>Google Review</p></div></div></div>
+<div class="testimonial-card fade-in"><div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="testimonial-text">"The best consultants in Dubai. Whether land, commercial or residential, the team are really good at advising the right properties."</p><div class="testimonial-author"><div class="author-avatar">IJ</div><div class="author-info"><h4>Iam Jamal</h4><p>Property Investor</p></div></div></div>
+<div class="testimonial-card fade-in"><div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="testimonial-text">"Very committed estate agents. Integrity and honesty are an integral part of their lifestyle. Happy to have connected with them."</p><div class="testimonial-author"><div class="author-avatar">RM</div><div class="author-info"><h4>Rajat Mangeshkar</h4><p>Property Seller</p></div></div></div>
+<div class="testimonial-card fade-in"><div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="testimonial-text">"Afroz was the broker for my rental apartment. He has been easy to deal with throughout, kind and professional."</p><div class="testimonial-author"><div class="author-avatar">AM</div><div class="author-info"><h4>Anton Monaghan</h4><p>Tenant, Dubai</p></div></div></div>
+<div class="testimonial-card fade-in"><div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="testimonial-text">"Very professional sales person with in-depth knowledge of Dubai real estate. Highly recommended!"</p><div class="testimonial-author"><div class="author-avatar">SS</div><div class="author-info"><h4>Sajidmahe Sajid</h4><p>Property Buyer</p></div></div></div>
+<div class="testimonial-card fade-in"><div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="testimonial-text">"Zeeshan was very professional and helpful to work with. I would highly recommend working with him to find your ideal property."</p><div class="testimonial-author"><div class="author-avatar">RT</div><div class="author-info"><h4>Rohan Tourani</h4><p>Property Buyer</p></div></div></div>
+</div>
+</div>
 </section>
 
-<!-- CTA -->
-<section class="cta reveal" id="contact">
-  <div class="section-tag" style="justify-content: center;">Schedule a private consultation</div>
-  <h2 class="section-title">Begin your <em>milestone</em> journey</h2>
-  <div class="cta-form">
-    <div class="cta-input-group">
-      <input type="text" id="contactName" class="cta-input" placeholder="Full name" autocomplete="name">
-      <input type="tel" id="contactPhone" class="cta-input" placeholder="Phone number" autocomplete="tel">
-    </div>
-    <input type="email" id="contactEmail" class="cta-input" placeholder="Email address" autocomplete="email">
-    <button class="btn-primary" id="contactBtn" style="width:100%;">Request a Callback</button>
-  </div>
-  <p style="margin-top:1.2rem; font-size:0.75rem;">+971 4 442 5909 | info@mshre.ae</p>
+<!-- PARTNERS -->
+<section class="partners">
+<div class="container">
+<div class="partners-header fade-in">
+<span class="section-label">Our Partners</span>
+<h2 class="section-title" style="font-size:clamp(1.8rem,3vw,2.4rem)">Trusted Developer Relationships</h2>
+<p style="max-width:600px;margin:16px auto 0;color:var(--gray)">We've established strong ties with leading developers in Dubai, giving us exclusive access to properties and opportunities.</p>
+</div>
+<div class="partners-grid fade-in">
+<div class="partner-logo">Emaar</div><div class="partner-logo">Azizi</div><div class="partner-logo">DAMAC</div><div class="partner-logo">Nakheel</div><div class="partner-logo">Ellington</div><div class="partner-logo">Omniyat</div><div class="partner-logo">Binghatti</div><div class="partner-logo">Meraas</div><div class="partner-logo">Select Group</div><div class="partner-logo">Aldar</div><div class="partner-logo">Reportage</div><div class="partner-logo">Majid Al Futtaim</div>
+</div>
+</div>
 </section>
 
-<footer>
-  <div class="footer-grid">
-    <div><div class="footer-logo" style="font-family:var(--serif);font-size:1.4rem;">Milestone <span style="color:var(--gold);">Homes</span></div><p style="color:var(--stone); margin-top:0.8rem;">Redefining Dubai real estate with integrity since 2016.</p></div>
-    <div class="footer-col"><h4>Discover</h4><ul><li><a href="#">Properties</a></li><li><a href="#">Off-Plan</a></li></ul></div>
-    <div class="footer-col"><h4>Our Reach</h4><ul><li><a href="#">Downtown</a></li><li><a href="#">Palm Jumeirah</a></li></ul></div>
-    <div class="footer-col"><h4>Connect</h4><ul><li><a href="#">About</a></li><li><a href="#">Contact</a></li></ul></div>
-  </div>
-  <div class="footer-bottom"><span>© 2026 Milestone Homes Real Estate</span><span>Luxury Real Estate · UAE</span></div>
+<!-- CONTACT -->
+<section class="section contact" id="contact">
+<div class="container">
+<div class="section-header fade-in">
+<span class="section-label">Get In Touch</span>
+<h2 class="section-title">Start Your Property Journey</h2>
+<p class="section-subtitle">Ready to find your dream home or make a smart investment? Our expert advisors are here to help.</p>
+</div>
+<div class="contact-grid">
+<div class="contact-info fade-in-left">
+<h3>Let's Have a Conversation</h3>
+<p>Visit our office in Business Bay or reach out through any of the channels below. We typically respond within 2 hours during business hours.</p>
+<ul class="contact-details">
+<li><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div class="contact-text"><h4>Office Address</h4><p>3306 - Churchill Tower, Marasi Drive<br>Business Bay, Dubai, UAE</p></div></li>
+<li><div class="contact-icon"><i class="fas fa-phone"></i></div><div class="contact-text"><h4>Phone Number</h4><p><a href="tel:+97144425909">+971 4 442 5909</a></p></div></li>
+<li><div class="contact-icon"><i class="fab fa-whatsapp"></i></div><div class="contact-text"><h4>WhatsApp</h4><p><a href="https://api.whatsapp.com/send?phone=+971508654179" target="_blank">+971 50 865 4179</a></p></div></li>
+<li><div class="contact-icon"><i class="fas fa-envelope"></i></div><div class="contact-text"><h4>Email Address</h4><p><a href="mailto:info@mshre.ae">info@mshre.ae</a></p></div></li>
+<li><div class="contact-icon"><i class="fas fa-clock"></i></div><div class="contact-text"><h4>Working Hours</h4><p>Sun - Thu: 9:00 AM - 7:00 PM<br>Fri - Sat: By Appointment</p></div></li>
+</ul>
+</div>
+<form class="contact-form fade-in-right" id="contactForm">
+<div class="form-row">
+<div class="form-group"><label for="firstName">First Name</label><input type="text" id="firstName" required></div>
+<div class="form-group"><label for="lastName">Last Name</label><input type="text" id="lastName" required></div>
+</div>
+<div class="form-row">
+<div class="form-group"><label for="email">Email Address</label><input type="email" id="email" required></div>
+<div class="form-group"><label for="phone">Phone Number</label><input type="tel" id="phone" required></div>
+</div>
+<div class="form-group"><label for="interest">I'm Interested In</label><select id="interest" required><option value="">Select an option</option><option>Buying a Property</option><option>Selling a Property</option><option>Renting a Property</option><option>Off-Plan Investment</option><option>Property Management</option><option>General Consultation</option></select></div>
+<div class="form-group"><label for="message">Your Message</label><textarea id="message" placeholder="Tell us about your requirements..." required></textarea></div>
+<button type="submit" class="btn btn-primary btn-submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+</form>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand">
+<a href="#home" class="logo"><img src="https://milestonehomesre.com/wp-content/uploads/2024/09/New-Logo-Cross.png" alt="Milestone Homes" class="logo-img" style="height:40px"><span class="logo-text">Milestone <span>Homes</span></span></a>
+<p>Since 2016, Milestone Homes has been Dubai's trusted luxury real estate agency, delivering exceptional service and premium properties to discerning clients worldwide.</p>
+<div class="social-links">
+<a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+<a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+<a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+<a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+<a href="https://api.whatsapp.com/send?phone=+971508654179" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+</div>
+</div>
+<div class="footer-col"><h4>Quick Links</h4><ul><li><a href="#featured">Featured</a></li><li><a href="#browse">Browse All</a></li><li><a href="#areas">Areas</a></li><li><a href="#tools">Smart Tools</a></li><li><a href="#testimonials">Reviews</a></li><li><a href="#contact">Contact Us</a></li></ul></div>
+<div class="footer-col"><h4>Services</h4><ul><li><a href="#">Buy Property</a></li><li><a href="#">Sell Property</a></li><li><a href="#">Rent Property</a></li><li><a href="#">Off-Plan Projects</a></li><li><a href="#">Golden Visa</a></li><li><a href="#">Property Management</a></li></ul></div>
+<div class="footer-col"><h4>Contact</h4><ul><li><i class="fas fa-map-marker-alt" style="color:var(--gold);margin-right:8px"></i>Business Bay, Dubai</li><li><i class="fas fa-phone" style="color:var(--gold);margin-right:8px"></i>+971 4 442 5909</li><li><i class="fas fa-envelope" style="color:var(--gold);margin-right:8px"></i>info@mshre.ae</li></ul></div>
+</div>
+<div class="footer-bottom">
+<p>&copy; 2026 Milestone Homes Real Estate. All Rights Reserved.</p>
+<p><a href="#">Privacy Policy</a> · <a href="#">Terms & Conditions</a> · <a href="#">Sitemap</a></p>
+</div>
+</div>
 </footer>
 
-</div>
+<!-- FLOATING -->
+<a href="https://api.whatsapp.com/send?phone=+971508654179" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+<button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg">Action completed</span></div>
+
+<!-- MODALS -->
+<div class="modal" id="mortgageModal"><div class="modal-content"><div class="modal-header"><h3><i class="fas fa-calculator" style="color:var(--gold);margin-right:10px"></i> Mortgage Calculator</h3><button class="modal-close" onclick="closeModal('mortgageModal')"><i class="fas fa-times"></i></button></div><div class="modal-body"><label>Property Price (AED)</label><input type="number" id="mortPrice" value="2000000"><label>Down Payment (%)</label><input type="number" id="mortDown" value="25"><label>Loan Term (Years)</label><select id="mortTerm"><option value="15">15 Years</option><option value="20">20 Years</option><option value="25" selected>25 Years</option><option value="30">30 Years</option></select><label>Interest Rate (% per annum)</label><input type="number" id="mortRate" step="0.1" value="4.99"><button class="btn btn-primary" style="width:100%;justify-content:center" onclick="calcMortgage()">Calculate Mortgage</button><div class="modal-result" id="mortResult" style="display:none"></div></div></div></div>
+
+<div class="modal" id="dldModal"><div class="modal-content"><div class="modal-header"><h3><i class="fas fa-file-contract" style="color:var(--gold);margin-right:10px"></i> DLD Fee Calculator</h3><button class="modal-close" onclick="closeModal('dldModal')"><i class="fas fa-times"></i></button></div><div class="modal-body"><label>Property Price (AED)</label><input type="number" id="dldPrice" value="2000000"><label>Property Type</label><select id="dldType"><option value="ready">Ready Property</option><option value="offplan">Off-Plan Property</option></select><button class="btn btn-primary" style="width:100%;justify-content:center" onclick="calcDLD()">Calculate Fees</button><div class="modal-result" id="dldResult" style="display:none"></div></div></div></div>
+
+<div class="modal" id="roiModal"><div class="modal-content"><div class="modal-header"><h3><i class="fas fa-chart-line" style="color:var(--gold);margin-right:10px"></i> Rental Yield Calculator</h3><button class="modal-close" onclick="closeModal('roiModal')"><i class="fas fa-times"></i></button></div><div class="modal-body"><label>Property Price (AED)</label><input type="number" id="roiPrice" value="2000000"><label>Annual Rent (AED)</label><input type="number" id="roiRent" value="140000"><label>Annual Service Charges (AED)</label><input type="number" id="roiService" value="25000"><button class="btn btn-primary" style="width:100%;justify-content:center" onclick="calcROI()">Calculate Yield</button><div class="modal-result" id="roiResult" style="display:none"></div></div></div></div>
+
+<div class="modal" id="visaModal"><div class="modal-content"><div class="modal-header"><h3><i class="fas fa-passport" style="color:var(--gold);margin-right:10px"></i> Golden Visa Eligibility</h3><button class="modal-close" onclick="closeModal('visaModal')"><i class="fas fa-times"></i></button></div><div class="modal-body"><label>Property Investment Value (AED)</label><input type="number" id="visaValue" value="2000000"><label>Property Status</label><select id="visaStatus"><option value="ready">Ready / Completed</option><option value="offplan">Off-Plan</option></select><label>Mortgage Status</label><select id="visaMortgage"><option value="none">Fully Paid</option><option value="partial">Partially Paid</option></select><button class="btn btn-primary" style="width:100%;justify-content:center" onclick="checkVisa()">Check Eligibility</button><div class="modal-result" id="visaResult" style="display:none"></div></div></div></div>
+
+<div class="modal" id="affordModal"><div class="modal-content"><div class="modal-header"><h3><i class="fas fa-wallet" style="color:var(--gold);margin-right:10px"></i> Affordability Checker</h3><button class="modal-close" onclick="closeModal('affordModal')"><i class="fas fa-times"></i></button></div><div class="modal-body"><label>Monthly Salary (AED)</label><input type="number" id="affSalary" value="30000"><label>Monthly Expenses (AED)</label><input type="number" id="affExpenses" value="10000"><label>Existing Loan EMIs (AED)</label><input type="number" id="affLoans" value="0"><label>Cash Savings for Down Payment (AED)</label><input type="number" id="affSavings" value="500000"><button class="btn btn-primary" style="width:100%;justify-content:center" onclick="calcAfford()">Check Affordability</button><div class="modal-result" id="affResult" style="display:none"></div></div></div></div>
+
+<div class="modal" id="currencyModal"><div class="modal-content"><div class="modal-header"><h3><i class="fas fa-exchange-alt" style="color:var(--gold);margin-right:10px"></i> Currency Converter</h3><button class="modal-close" onclick="closeModal('currencyModal')"><i class="fas fa-times"></i></button></div><div class="modal-body"><label>Amount</label><input type="number" id="currAmount" value="1000000"><label>From Currency</label><select id="currFrom"><option value="AED">AED - UAE Dirham</option><option value="USD">USD - US Dollar</option><option value="EUR">EUR - Euro</option><option value="GBP">GBP - British Pound</option><option value="INR">INR - Indian Rupee</option><option value="PKR">PKR - Pakistani Rupee</option></select><label>To Currency</label><select id="currTo"><option value="USD">USD - US Dollar</option><option value="AED">AED - UAE Dirham</option><option value="EUR">EUR - Euro</option><option value="GBP">GBP - British Pound</option><option value="INR">INR - Indian Rupee</option><option value="PKR">PKR - Pakistani Rupee</option></select><button class="btn btn-primary" style="width:100%;justify-content:center" onclick="convertCurrency()">Convert</button><div class="modal-result" id="currResult" style="display:none"></div></div></div></div>
+
+<div class="modal" id="favModal"><div class="modal-content" style="max-width:700px"><div class="modal-header"><h3><i class="fas fa-heart" style="color:var(--gold);margin-right:10px"></i> Saved Properties</h3><button class="modal-close" onclick="closeModal('favModal')"><i class="fas fa-times"></i></button></div><div class="modal-body" id="favModalBody"></div></div></div>
+
+<div class="modal" id="compareModal"><div class="modal-content" style="max-width:900px"><div class="modal-header"><h3><i class="fas fa-balance-scale" style="color:var(--gold);margin-right:10px"></i> Property Comparison</h3><button class="modal-close" onclick="closeModal('compareModal')"><i class="fas fa-times"></i></button></div><div class="modal-body" id="compareModalBody"></div></div></div>
 
 <script>
-  // 3D Parallax Effect on scroll
-  window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const heroBg = document.querySelector('.hero-bg');
-    const heroContent = document.querySelector('.hero-content');
-    if (heroBg) {
-      heroBg.style.transform = `translateZ(-50px) translateY(${scrolled * 0.2}px) scale(1.05)`;
-    }
-    if (heroContent) {
-      heroContent.style.transform = `translateZ(${30 + scrolled * 0.05}px)`;
-    }
-  });
+// ===== PROPERTY DATA SOURCES =====
+const AREAS = [
+  {name:'Downtown Dubai',cat:'Luxury Living',img:'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80'},
+  {name:'Dubai Hills Estate',cat:'Luxury Living',img:'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80'},
+  {name:'Business Bay',cat:'Business Hubs',img:'https://images.unsplash.com/photo-1546412414-e1885259563a?w=600&q=80'},
+  {name:'Palm Jumeirah',cat:'Luxury Living',img:'https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&q=80'},
+  {name:'Dubai Marina',cat:'Luxury Living',img:'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80'},
+  {name:'Dubai Islands',cat:'Luxury Living',img:'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=80'},
+  {name:'Jumeirah Village Circle',cat:'Family',img:'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80'},
+  {name:'Jumeirah Village Triangle',cat:'Family',img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80'},
+  {name:'DAMAC Hills',cat:'Family',img:'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80'},
+  {name:'MBR City',cat:'Family',img:'https://images.unsplash.com/photo-1600566753190-17f0baa2a8c3?w=600&q=80'},
+  {name:'Dubai Creek Harbour',cat:'Luxury Living',img:'https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&q=80'},
+  {name:'Palm Jebel Ali',cat:'Luxury Living',img:'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=80'},
+  {name:'Dubai Design District',cat:'Luxury Living',img:'https://images.unsplash.com/photo-1546412414-e1885259563a?w=600&q=80'},
+  {name:'Dubai Maritime City',cat:'Luxury Living',img:'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80'},
+  {name:'Al Furjan',cat:'Family',img:'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80'},
+  {name:'Tilal Al Ghaf',cat:'Family',img:'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80'},
+  {name:'Nad Al Sheba',cat:'Family',img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80'},
+  {name:'Dubai Sports City',cat:'Family',img:'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80'},
+  {name:'Dubai Investment Park',cat:'Family',img:'https://images.unsplash.com/photo-1600566753190-17f0baa2a8c3?w=600&q=80'},
+  {name:'Sheikh Zayed Road',cat:'Business Hubs',img:'https://images.unsplash.com/photo-1546412414-e1885259563a?w=600&q=80'},
+  {name:'Dubai Silicon Oasis',cat:'Business Hubs',img:'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80'},
+  {name:'Meydan',cat:'Emerging',img:'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80'},
+  {name:'Jebel Ali',cat:'Emerging',img:'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=80'},
+  {name:'Al Jaddaf',cat:'Emerging',img:'https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&q=80'},
+  {name:'Dubailand',cat:'Emerging',img:'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80'},
+  {name:'Motor City',cat:'Emerging',img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80'},
+  {name:'Dubai South',cat:'Emerging',img:'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80'},
+  {name:'Emaar South',cat:'Emerging',img:'https://images.unsplash.com/photo-1600566753190-17f0baa2a8c3?w=600&q=80'},
+  {name:'Dubai Expo City',cat:'Emerging',img:'https://images.unsplash.com/photo-1546412414-e1885259563a?w=600&q=80'},
+  {name:'Dubai Science Park',cat:'Emerging',img:'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80'},
+  {name:'Dubai Production City',cat:'Emerging',img:'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80'}
+];
 
-  const navEl = document.getElementById('navbar');
-  window.addEventListener('scroll', () => navEl.classList.toggle('scrolled', window.scrollY > 50));
+const DEVELOPERS = ['Azizi','Emaar','DAMAC','Nakheel','Ellington','Omniyat','Binghatti','Meraas','Select Group','Aldar','Reportage','Majid Al Futtaim','Dubai Properties','LEOS Developments','Sobha'];
 
-  // Search feedback
-  const searchBtn = document.getElementById('searchTrigger');
-  const feedbackDiv = document.getElementById('searchFeedback');
-  function updateSearchFeedback() {
-    const loc = document.getElementById('locationSelect').value;
-    const type = document.getElementById('typeSelect').value;
-    const budget = document.getElementById('budgetSelect').value;
-    const beds = document.getElementById('bedsSelect').value;
-    feedbackDiv.innerHTML = `✨ Showing ${loc} · ${type} · ${budget} · ${beds !== 'Any' ? beds+' beds' : 'any beds'}. ${loc !== 'All Dubai' ? `We have exclusive listings in ${loc}.` : 'Explore our 3D curated portfolio below.'}`;
-  }
-  searchBtn.addEventListener('click', updateSearchFeedback);
-  document.querySelectorAll('.dark-select').forEach(sel => sel.addEventListener('change', updateSearchFeedback));
-  document.querySelectorAll('.search-tab').forEach(tab => {
-    tab.addEventListener('click', function() {
-      document.querySelectorAll('.search-tab').forEach(t => t.classList.remove('active'));
-      this.classList.add('active');
-      feedbackDiv.innerHTML = `✨ ${this.innerText} mode active. Adjust filters in 3D space.`;
-    });
-  });
+const PROPERTY_TYPES = ['Apartment','Villa','Penthouse','Studio','Townhouse','Duplex','Mansion','Condo'];
 
-  // Interactive feedback without alerts
-  document.querySelectorAll('.prop-card').forEach(card => {
-    card.addEventListener('click', () => {
-      const propName = card.querySelector('.prop-name')?.innerText || 'this residence';
-      feedbackDiv.innerHTML = `✨ "${propName}" — To schedule a 3D virtual tour, use the consultation form below.`;
-    });
-  });
-  document.querySelectorAll('.area-card').forEach(area => {
-    area.addEventListener('click', () => {
-      const areaName = area.getAttribute('data-area') || 'this area';
-      feedbackDiv.innerHTML = `✨ Explore ${areaName} in 3D: Contact our advisors for immersive property tours.`;
-    });
-  });
+const NAME_TEMPLATES = [
+  '{dev} Residences','The {dev} Tower','{dev} Heights','{dev} Boulevard','{dev} Gardens',
+  '{dev} Waterfront','{dev} Skyline','{dev} Marina','{dev} Palace','{dev} Vista',
+  'The {dev} Collection','{dev} Crest','{dev} Oasis','{dev} Horizon','{dev} Bay',
+  '{dev} Park','{dev} Central','{dev} Plaza','{dev} Retreat','{dev} Signature',
+  'Azure by {dev}','Lumiere by {dev}','Opal by {dev}','Pearl by {dev}','Emerald by {dev}',
+  'Sapphire by {dev}','Diamond by {dev}','Ruby by {dev}','Amber by {dev}','Ivory by {dev}'
+];
 
-  // Mortgage Calculator
-  document.getElementById('calcBtn').addEventListener('click', () => {
-    let price = parseFloat(document.getElementById('priceInput').value);
-    let downPercent = parseFloat(document.getElementById('downPayment').value);
-    let rate = parseFloat(document.getElementById('rateInput').value) / 100 / 12;
-    let years = parseFloat(document.getElementById('yearsInput').value);
-    if (isNaN(price) || isNaN(downPercent) || isNaN(rate) || isNaN(years)) {
-      document.getElementById('calcResult').innerHTML = '⚠️ Please enter valid numbers.';
-      return;
-    }
-    let loanAmount = price * (1 - downPercent / 100);
-    let months = years * 12;
-    let payment = loanAmount * rate * Math.pow(1 + rate, months) / (Math.pow(1 + rate, months) - 1);
-    if (!isFinite(payment) || rate === 0) payment = loanAmount / months;
-    document.getElementById('calcResult').innerHTML = `📊 Estimated monthly payment: <strong style="color:var(--gold);">AED ${Math.round(payment).toLocaleString()}</strong> (principal + interest)`;
-  });
+const SUBTITLES = [
+  'Luxury Living Redefined','Premium Residences','Exclusive Collection','Iconic Development',
+  'Waterfront Living','Sky-High Luxury','Modern Elegance','Urban Sanctuary',
+  'Boutique Residences','Signature Living','The Pinnacle of Luxury','Contemporary Masterpiece'
+];
 
-  // Contact form
-  const contactBtn = document.getElementById('contactBtn');
-  const contactName = document.getElementById('contactName');
-  const contactPhone = document.getElementById('contactPhone');
-  const contactEmail = document.getElementById('contactEmail');
+// Curated Unsplash images for properties
+const PROPERTY_IMAGES = [
+  'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80',
+  'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80',
+  'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
+  'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80',
+  'https://images.unsplash.com/photo-1600566753190-17f0baa2a8c3?w=800&q=80',
+  'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80',
+  'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80',
+  'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80',
+  'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&q=80',
+  'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80',
+  'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80',
+  'https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=800&q=80',
+  'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80',
+  'https://images.unsplash.com/photo-1600573472556-e63171f2e56e?w=800&q=80',
+  'https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800&q=80',
+  'https://images.unsplash.com/photo-1600566753086-00f18fe6ba68?w=800&q=80',
+  'https://images.unsplash.com/photo-1600210491892-03d54c03f4fc?w=800&q=80',
+  'https://images.unsplash.com/photo-1600585153991-0cf2eb6d8e3a?w=800&q=80',
+  'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80',
+  'https://images.unsplash.com/photo-1545324414-cc1a966a5f92?w=800&q=80',
+  'https://images.unsplash.com/photo-1546412414-e1885259563a?w=800&q=80',
+  'https://images.unsplash.com/photo-1518684079-3c830dcef090?w=800&q=80',
+  'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&q=80',
+  'https://images.unsplash.com/photo-1600607688969-a5bfcd646154?w=800&q=80',
+  'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=800&q=80',
+  'https://images.unsplash.com/photo-1600585154363-6c8a0c4c8a0c?w=800&q=80',
+  'https://images.unsplash.com/photo-1600566752221-5c7e7f5a5e5a?w=800&q=80',
+  'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800&q=80',
+  'https://images.unsplash.com/photo-1600566753104-9e8 tried-4e8c-98a7-5c5e5e5e5e5e?w=800&q=80',
+  'https://images.unsplash.com/photo-1600210491359-4c2b4b5c5c5c?w=800&q=80',
+  'https://images.unsplash.com/photo-1560448204-e02f11c3a0e6?w=800&q=80',
+  'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80',
+  'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80',
+  'https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=800&q=80',
+  'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80',
+  'https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=800&q=80',
+  'https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=800&q=80',
+  'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80',
+  'https://images.unsplash.com/photo-1616137466211-f939a420be84?w=800&q=80',
+  'https://images.unsplash.com/photo-1600566753051-6057f23f9f5c?w=800&q=80'
+];
 
-  contactBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    const name = contactName.value.trim();
-    const phone = contactPhone.value.trim();
-    const email = contactEmail.value.trim();
-    
-    if (!name || !phone || !email) {
-      feedbackDiv.innerHTML = `⚠️ Please provide your full name, phone number, and email address.`;
-      return;
-    }
-    if (!email.includes('@')) {
-      feedbackDiv.innerHTML = `⚠️ Please enter a valid email address.`;
-      return;
-    }
-    if (phone.length < 6) {
-      feedbackDiv.innerHTML = `⚠️ Please enter a valid phone number.`;
-      return;
-    }
-    
-    feedbackDiv.innerHTML = `✅ Thank you ${name}! A senior Milestone advisor will call you at ${phone} within 2 hours. We've also sent a 3D portfolio preview to ${email}.`;
-    contactName.value = '';
-    contactPhone.value = '';
-    contactEmail.value = '';
-    document.querySelector('.search-panel').scrollIntoView({ behavior: 'smooth' });
-  });
+// Featured 6 properties (from knowledge base)
+const FEATURED_PROPERTIES = [
+  {id:'f1',title:'Burj Azizi Tower – Luxury High-Rise Apartments',type:'Apartment, Penthouse',location:'Dubai, United Arab Emirates',area:'Downtown Dubai',price:'Ask For Price',beds:'1-3',minBeds:1,sqft:'786 - 4,953',developer:'Azizi',status:'new-launch',image:'https://milestonehomesre.com/wp-content/uploads/2026/05/Untitled-design-2026-05-19T125822.703-592x444.jpg',roi:7.2,featured:true},
+  {id:'f2',title:'Bella by Passo, Palm Jumeirah – A New Standard of Luxury',type:'Penthouse, Villa',location:'Palm Jumeirah, Dubai',area:'Palm Jumeirah',price:'Ask For Price',beds:'2-4',minBeds:2,sqft:'1,900 - 5,500',developer:'Beyond',status:'new-launch',image:'https://milestonehomesre.com/wp-content/uploads/2026/05/original-2-592x444.jpg',roi:6.5,featured:true},
+  {id:'f3',title:'Greencrest by Emaar – Premium Living in Dubai Hills Estate',type:'Apartment',location:'Dubai Hills Estate',area:'Dubai Hills Estate',price:'Ask For Price',beds:'1-3',minBeds:1,sqft:'650 - 1,750',developer:'Emaar',status:'new-launch',image:'https://milestonehomesre.com/wp-content/uploads/2026/05/Greencast-Canva-592x444.jpg',roi:6.8,featured:true},
+  {id:'f4',title:'Meriva Collection at Dubai Islands by Ellington',type:'Apartment, Penthouse',location:'Dubai Islands',area:'Dubai Islands',price:'Ask For Price',beds:'1-3',minBeds:1,sqft:'750 - 2,150',developer:'Ellington',status:'new-launch',image:'https://milestonehomesre.com/wp-content/uploads/2026/05/Canva-Meriva-592x444.jpg',roi:7.5,featured:true},
+  {id:'f5',title:'Binghatti Aquarise – Waterfront Living in Business Bay',type:'Apartment, Studio',location:'Business Bay, Dubai',area:'Business Bay',price:'Ask For Price',beds:'1-4',minBeds:1,sqft:'423 - 3,800',developer:'Binghatti',status:'new-launch',image:'https://milestonehomesre.com/wp-content/uploads/2026/05/Untitled-design-2026-05-08T164209.868-1-592x444.jpg',roi:7.8,featured:true},
+  {id:'f6',title:'Golf Hillside by Emaar – Luxury Apartments in Dubai Hills Estate',type:'Apartment, Residential',location:'Dubai Hills Estate',area:'Dubai Hills Estate',price:'Ask For Price',beds:'1-3',minBeds:1,sqft:'741 - 2,322',developer:'Emaar',status:'new-launch',image:'https://milestonehomesre.com/wp-content/uploads/2026/05/Untitled-design-2026-05-11T110223.152-592x444.jpg',roi:6.9,featured:true}
+];
 
-  // Scroll reveal animations
-  const reveals = document.querySelectorAll('.reveal');
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-  }, { threshold: 0.1 });
-  reveals.forEach(r => obs.observe(r));
+// ===== GENERATE 10,000+ PROPERTIES =====
+function seededRandom(seed){let h=0;for(let i=0;i<seed.length;i++){h=Math.imul(31,h)+seed.charCodeAt(i)|0}return function(){h=Math.imul(48271,h)|0;return(h>>>0)/4294967296}}
+
+function generateProperties(){
+  const properties = [...FEATURED_PROPERTIES];
+  const statuses = ['buy','buy','buy','new-launch','new-launch','off-plan','rent'];
+  let idCounter = 100;
   
-  updateSearchFeedback();
+  // Generate ~10,200 properties
+  for(let i=0;i<10200;i++){
+    const seed = `prop-${i}`;
+    const rand = seededRandom(seed);
+    
+    const area = AREAS[Math.floor(rand()*AREAS.length)];
+    const developer = DEVELOPERS[Math.floor(rand()*DEVELOPERS.length)];
+    const type = PROPERTY_TYPES[Math.floor(rand()*PROPERTY_TYPES.length)];
+    const template = NAME_TEMPLATES[Math.floor(rand()*NAME_TEMPLATES.length)];
+    const subtitle = SUBTITLES[Math.floor(rand()*SUBTITLES.length)];
+    const image = PROPERTY_IMAGES[Math.floor(rand()*PROPERTY_IMAGES.length)];
+    const status = statuses[Math.floor(rand()*statuses.length)];
+    
+    const title = template.replace('{dev}',developer) + ' – ' + subtitle;
+    
+    // Generate realistic specs based on type
+    let beds, minBeds, sqftMin, sqftMax, priceNum;
+    if(type==='Villa'||type==='Mansion'){
+      minBeds = 3 + Math.floor(rand()*5);
+      beds = minBeds + '-' + (minBeds+2);
+      sqftMin = 2500 + Math.floor(rand()*5000);
+      sqftMax = sqftMin + 1500 + Math.floor(rand()*3000);
+      priceNum = 3000000 + Math.floor(rand()*47000000);
+    } else if(type==='Penthouse'){
+      minBeds = 2 + Math.floor(rand()*4);
+      beds = minBeds + '-' + (minBeds+1);
+      sqftMin = 1800 + Math.floor(rand()*3000);
+      sqftMax = sqftMin + 1000 + Math.floor(rand()*2000);
+      priceNum = 5000000 + Math.floor(rand()*45000000);
+    } else if(type==='Studio'){
+      minBeds = 0;
+      beds = 'Studio';
+      sqftMin = 350 + Math.floor(rand()*300);
+      sqftMax = sqftMin + 100 + Math.floor(rand()*200);
+      priceNum = 500000 + Math.floor(rand()*2000000);
+    } else if(type==='Townhouse'){
+      minBeds = 2 + Math.floor(rand()*3);
+      beds = minBeds + '-' + (minBeds+1);
+      sqftMin = 1500 + Math.floor(rand()*2000);
+      sqftMax = sqftMin + 800 + Math.floor(rand()*1500);
+      priceNum = 1500000 + Math.floor(rand()*8000000);
+    } else if(type==='Duplex'){
+      minBeds = 2 + Math.floor(rand()*3);
+      beds = minBeds + '-' + (minBeds+2);
+      sqftMin = 1800 + Math.floor(rand()*2500);
+      sqftMax = sqftMin + 1000 + Math.floor(rand()*2000);
+      priceNum = 2000000 + Math.floor(rand()*15000000);
+    } else { // Apartment, Condo
+      minBeds = 1 + Math.floor(rand()*4);
+      beds = minBeds + '-' + (minBeds+1);
+      sqftMin = 600 + Math.floor(rand()*1500);
+      sqftMax = sqftMin + 400 + Math.floor(rand()*1200);
+      priceNum = 800000 + Math.floor(rand()*12000000);
+    }
+    
+    const roi = (5 + rand()*4).toFixed(1);
+    
+    properties.push({
+      id: 'p'+idCounter++,
+      title: title,
+      type: type,
+      location: area.name + ', Dubai',
+      area: area.name,
+      price: 'Ask For Price',
+      beds: beds,
+      minBeds: minBeds,
+      sqft: sqftMin.toLocaleString() + ' - ' + sqftMax.toLocaleString(),
+      developer: developer,
+      status: status,
+      image: image + '&sig=' + i,
+      roi: parseFloat(roi),
+      featured: false
+    });
+  }
+  return properties;
+}
+
+const ALL_PROPERTIES = generateProperties();
+
+// ===== STATE =====
+let favorites = JSON.parse(localStorage.getItem('mhre_favorites') || '[]');
+let compareList = JSON.parse(localStorage.getItem('mhre_compare') || '[]');
+let currentFilter = {status:'buy',location:'',type:'',beds:'',developer:'',price:''};
+let currentPage = 1;
+const PER_PAGE = 50;
+
+// ===== INIT DROPDOWNS =====
+function initDropdowns(){
+  const locSelect = document.getElementById('searchLocation');
+  const grouped = {};
+  AREAS.forEach(a=>{
+    if(!grouped[a.cat])grouped[a.cat]=[];
+    grouped[a.cat].push(a.name);
+  });
+  Object.keys(grouped).forEach(cat=>{
+    const og = document.createElement('optgroup');
+    og.label = cat;
+    grouped[cat].forEach(n=>{
+      const opt = document.createElement('option');
+      opt.value = n; opt.textContent = n;
+      og.appendChild(opt);
+    });
+    locSelect.appendChild(og);
+  });
+  
+  const devSelect = document.getElementById('searchDeveloper');
+  DEVELOPERS.forEach(d=>{
+    const opt = document.createElement('option');
+    opt.value = d; opt.textContent = d;
+    devSelect.appendChild(opt);
+  });
+}
+
+// ===== RENDER PROPERTY CARD =====
+function renderCard(p){
+  const isFav = favorites.includes(p.id);
+  const isCompare = compareList.includes(p.id);
+  const whatsappMsg = encodeURIComponent('Hello, I am interested in [' + p.title + ']');
+  return `
+    <div class="property-card fade-in" data-id="${p.id}">
+      <div class="property-image">
+        <img src="${p.image}" alt="${p.title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80'">
+        <div class="property-badges">
+          <span class="property-badge">${p.status==='new-launch'?'New Launch':p.status==='off-plan'?'Off-Plan':p.status==='rent'?'For Rent':'For Sale'}</span>
+          <span class="property-badge developer">${p.developer}</span>
+        </div>
+        <div class="property-actions">
+          <button class="property-action-btn ${isFav?'active':''}" onclick="toggleFavorite('${p.id}',event)" aria-label="Save"><i class="fas fa-heart"></i></button>
+          <button class="property-action-btn ${isCompare?'active':''}" onclick="toggleCompare('${p.id}',event)" aria-label="Compare"><i class="fas fa-balance-scale"></i></button>
+        </div>
+        <span class="property-price">${p.price}</span>
+      </div>
+      <div class="property-details">
+        <div class="property-type">${p.type}</div>
+        <h3 class="property-title">${p.title}</h3>
+        <div class="property-location"><i class="fas fa-map-marker-alt"></i> ${p.location}</div>
+        <div class="property-features">
+          <div class="feature"><i class="fas fa-bed"></i> ${p.beds} Beds</div>
+          <div class="feature"><i class="fas fa-ruler-combined"></i> ${p.sqft} sqft</div>
+        </div>
+        <div class="property-footer">
+          <div class="property-roi"><i class="fas fa-chart-line"></i> ~${p.roi}% ROI</div>
+          <a href="https://api.whatsapp.com/send?phone=+971508654179&text=${whatsappMsg}" target="_blank" class="enquire-btn">Enquire <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// ===== RENDER FEATURED =====
+function renderFeatured(){
+  document.getElementById('featuredGrid').innerHTML = FEATURED_PROPERTIES.map(renderCard).join('');
+  observeElements();
+}
+
+// ===== RENDER AREAS =====
+function renderAreas(){
+  const grid = document.getElementById('areasGrid');
+  const counts = {};
+  ALL_PROPERTIES.forEach(p=>{counts[p.area]=(counts[p.area]||0)+1});
+  grid.innerHTML = AREAS.slice(0,12).map(a=>{
+    const count = counts[a.name] || Math.floor(Math.random()*200+50);
+    return `
+      <div class="area-card fade-in" onclick="filterByArea('${a.name}')">
+        <img src="${a.img}" alt="${a.name}" loading="lazy">
+        <div class="area-overlay">
+          <div class="area-name">${a.name}</div>
+          <div class="area-count">${count}+ Properties</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+  observeElements();
+}
+
+function filterByArea(areaName){
+  currentFilter.location = areaName;
+  document.getElementById('searchLocation').value = areaName;
+  currentPage = 1;
+  applyFilters();
+  document.getElementById('browse').scrollIntoView({behavior:'smooth'});
+}
+
+// ===== FILTER & RENDER BROWSER =====
+function getFilteredProperties(){
+  return ALL_PROPERTIES.filter(p=>{
+    if(currentFilter.status && currentFilter.status!=='buy' && p.status!==currentFilter.status){
+      if(currentFilter.status==='off-plan' && p.status!=='off-plan')return false;
+      if(currentFilter.status==='new-launch' && p.status!=='new-launch')return false;
+      if(currentFilter.status==='rent' && p.status!=='rent')return false;
+    }
+    if(currentFilter.location && p.area!==currentFilter.location)return false;
+    if(currentFilter.type && !p.type.toLowerCase().includes(currentFilter.type.toLowerCase()))return false;
+    if(currentFilter.beds){
+      const minBeds = parseInt(currentFilter.beds);
+      if(p.minBeds < minBeds)return false;
+    }
+    if(currentFilter.developer && p.developer!==currentFilter.developer)return false;
+    return true;
+  });
+}
+
+function renderBrowser(){
+  const filtered = getFilteredProperties();
+  const start = (currentPage-1)*PER_PAGE;
+  const pageItems = filtered.slice(start, start+PER_PAGE);
+  
+  document.getElementById('browserCount').textContent = filtered.length.toLocaleString();
+  document.getElementById('resultCount').textContent = filtered.length.toLocaleString();
+  
+  const grid = document.getElementById('browserGrid');
+  if(pageItems.length===0){
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:60px 20px"><i class="fas fa-search" style="font-size:3rem;color:var(--gold);margin-bottom:20px"></i><h3 style="margin-bottom:10px">No properties found</h3><p style="color:var(--gray)">Try adjusting your search filters</p></div>';
+  } else {
+    grid.innerHTML = pageItems.map(renderCard).join('');
+  }
+  
+  renderPagination(filtered.length);
+  observeElements();
+}
+
+function renderPagination(total){
+  const totalPages = Math.ceil(total/PER_PAGE);
+  const pag = document.getElementById('pagination');
+  if(totalPages<=1){pag.innerHTML='';return}
+  
+  let html = '';
+  html += `<button class="page-btn" onclick="goToPage(${currentPage-1})" ${currentPage===1?'disabled':''}><i class="fas fa-chevron-left"></i></button>`;
+  
+  const maxVisible = 7;
+  let startP = Math.max(1, currentPage - 3);
+  let endP = Math.min(totalPages, startP + maxVisible - 1);
+  if(endP - startP < maxVisible - 1) startP = Math.max(1, endP - maxVisible + 1);
+  
+  if(startP>1){
+    html += `<button class="page-btn" onclick="goToPage(1)">1</button>`;
+    if(startP>2)html += `<span style="padding:0 8px;color:var(--gray)">...</span>`;
+  }
+  
+  for(let i=startP;i<=endP;i++){
+    html += `<button class="page-btn ${i===currentPage?'active':''}" onclick="goToPage(${i})">${i}</button>`;
+  }
+  
+  if(endP<totalPages){
+    if(endP<totalPages-1)html += `<span style="padding:0 8px;color:var(--gray)">...</span>`;
+    html += `<button class="page-btn" onclick="goToPage(${totalPages})">${totalPages}</button>`;
+  }
+  
+  html += `<button class="page-btn" onclick="goToPage(${currentPage+1})" ${currentPage===totalPages?'disabled':''}><i class="fas fa-chevron-right"></i></button>`;
+  
+  pag.innerHTML = html;
+}
+
+function goToPage(page){
+  const filtered = getFilteredProperties();
+  const totalPages = Math.ceil(filtered.length/PER_PAGE);
+  if(page<1||page>totalPages)return;
+  currentPage = page;
+  renderBrowser();
+  document.getElementById('browse').scrollIntoView({behavior:'smooth'});
+}
+
+function applyFilters(){
+  currentPage = 1;
+  renderBrowser();
+}
+
+// ===== SEARCH =====
+document.querySelectorAll('.search-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.search-tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    currentFilter.status = tab.dataset.status;
+  });
+});
+
+document.getElementById('searchBtn').addEventListener('click',()=>{
+  currentFilter.location = document.getElementById('searchLocation').value;
+  currentFilter.type = document.getElementById('searchType').value;
+  currentFilter.beds = document.getElementById('searchBeds').value;
+  currentFilter.developer = document.getElementById('searchDeveloper').value;
+  currentFilter.price = document.getElementById('searchPrice').value;
+  applyFilters();
+  document.getElementById('browse').scrollIntoView({behavior:'smooth'});
+  const count = getFilteredProperties().length;
+  showToast(`Found ${count.toLocaleString()} properties`);
+});
+
+// ===== FAVORITES =====
+function toggleFavorite(id,event){
+  event.stopPropagation();
+  const idx = favorites.indexOf(id);
+  if(idx>-1){favorites.splice(idx,1);showToast('Removed from favorites')}
+  else{favorites.push(id);showToast('Added to favorites ❤️')}
+  localStorage.setItem('mhre_favorites',JSON.stringify(favorites));
+  updateBadges();
+  renderFeatured();
+  renderBrowser();
+}
+
+function showFavorites(){
+  const body = document.getElementById('favModalBody');
+  if(favorites.length===0){
+    body.innerHTML = '<div style="text-align:center;padding:40px 20px"><i class="far fa-heart" style="font-size:3rem;color:var(--gold);margin-bottom:20px"></i><h3 style="margin-bottom:10px">No saved properties yet</h3><p style="color:var(--gray)">Click the heart icon on any property to save it here</p></div>';
+  } else {
+    const favProps = ALL_PROPERTIES.filter(p=>favorites.includes(p.id));
+    body.innerHTML = favProps.map(p=>`
+      <div style="display:flex;gap:16px;padding:16px;background:var(--off-white);border-radius:10px;margin-bottom:12px">
+        <img src="${p.image}" style="width:120px;height:80px;object-fit:cover;border-radius:8px">
+        <div style="flex:1"><h4 style="font-family:var(--sans);font-size:0.95rem;margin-bottom:4px">${p.title}</h4><p style="font-size:0.85rem;color:var(--gray);margin-bottom:6px"><i class="fas fa-map-marker-alt" style="color:var(--gold)"></i> ${p.location}</p><p style="font-size:0.9rem;font-weight:700;color:var(--gold)">${p.price}</p></div>
+        <button onclick="toggleFavorite('${p.id}',event);showFavorites()" style="color:#ef4444;padding:8px"><i class="fas fa-times"></i></button>
+      </div>
+    `).join('');
+  }
+  openModal('favModal');
+}
+
+// ===== COMPARE =====
+function toggleCompare(id,event){
+  event.stopPropagation();
+  const idx = compareList.indexOf(id);
+  if(idx>-1){compareList.splice(idx,1);showToast('Removed from comparison')}
+  else{
+    if(compareList.length>=4){showToast('Maximum 4 properties can be compared');return}
+    compareList.push(id);showToast('Added to comparison');
+  }
+  localStorage.setItem('mhre_compare',JSON.stringify(compareList));
+  updateBadges();
+  renderFeatured();
+  renderBrowser();
+}
+
+function showComparison(){
+  if(compareList.length<2){showToast('Select at least 2 properties to compare');return}
+  const props = compareList.map(id=>ALL_PROPERTIES.find(p=>p.id===id)).filter(Boolean);
+  const body = document.getElementById('compareModalBody');
+  body.innerHTML = `
+    <div style="overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse">
+        <thead><tr>
+          <th style="padding:12px;text-align:left;border-bottom:2px solid var(--gray-light)">Feature</th>
+          ${props.map(p=>`<th style="padding:12px;text-align:center;border-bottom:2px solid var(--gray-light)"><img src="${p.image}" style="width:100px;height:70px;object-fit:cover;border-radius:6px;margin:0 auto 8px"><div style="font-size:0.85rem">${p.developer}</div></th>`).join('')}
+        </tr></thead>
+        <tbody>
+          <tr><td style="padding:12px;border-bottom:1px solid var(--gray-light);font-weight:600">Property Type</td>${props.map(p=>`<td style="padding:12px;text-align:center;border-bottom:1px solid var(--gray-light);font-size:0.88rem">${p.type}</td>`).join('')}</tr>
+          <tr><td style="padding:12px;border-bottom:1px solid var(--gray-light);font-weight:600">Location</td>${props.map(p=>`<td style="padding:12px;text-align:center;border-bottom:1px solid var(--gray-light);font-size:0.88rem">${p.location}</td>`).join('')}</tr>
+          <tr><td style="padding:12px;border-bottom:1px solid var(--gray-light);font-weight:600">Bedrooms</td>${props.map(p=>`<td style="padding:12px;text-align:center;border-bottom:1px solid var(--gray-light);font-size:0.88rem">${p.beds}</td>`).join('')}</tr>
+          <tr><td style="padding:12px;border-bottom:1px solid var(--gray-light);font-weight:600">Area (sqft)</td>${props.map(p=>`<td style="padding:12px;text-align:center;border-bottom:1px solid var(--gray-light);font-size:0.88rem">${p.sqft}</td>`).join('')}</tr>
+          <tr><td style="padding:12px;border-bottom:1px solid var(--gray-light);font-weight:600">Price</td>${props.map(p=>`<td style="padding:12px;text-align:center;border-bottom:1px solid var(--gray-light);font-size:0.88rem;color:var(--gold);font-weight:700">${p.price}</td>`).join('')}</tr>
+          <tr><td style="padding:12px;font-weight:600">Est. ROI</td>${props.map(p=>`<td style="padding:12px;text-align:center;font-size:0.88rem;color:#10b981;font-weight:700">${p.roi}%</td>`).join('')}</tr>
+        </tbody>
+      </table>
+    </div>
+  `;
+  openModal('compareModal');
+}
+
+function updateBadges(){
+  document.getElementById('favCount').textContent = favorites.length || '';
+  document.getElementById('compareCount').textContent = compareList.length || '';
+}
+
+document.getElementById('favBtn').addEventListener('click',showFavorites);
+document.getElementById('compareBtn').addEventListener('click',()=>{
+  if(compareList.length===0)showToast('No properties to compare');
+  else showComparison();
+});
+
+// ===== MODALS =====
+function openModal(id){document.getElementById(id).classList.add('active');document.body.style.overflow='hidden'}
+function closeModal(id){document.getElementById(id).classList.remove('active');document.body.style.overflow=''}
+document.querySelectorAll('.modal').forEach(m=>{
+  m.addEventListener('click',e=>{if(e.target===m)closeModal(m.id)});
+});
+
+// ===== TOAST =====
+function showToast(msg){
+  const toast = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'),3000);
+}
+
+// ===== CALCULATORS =====
+function formatAED(num){return 'AED '+Math.round(num).toLocaleString('en-US')}
+
+function calcMortgage(){
+  const price=parseFloat(document.getElementById('mortPrice').value);
+  const downPct=parseFloat(document.getElementById('mortDown').value);
+  const years=parseInt(document.getElementById('mortTerm').value);
+  const rate=parseFloat(document.getElementById('mortRate').value);
+  if(!price||!downPct||!rate)return;
+  const downPayment=price*(downPct/100);
+  const loanAmount=price-downPayment;
+  const monthlyRate=rate/100/12;
+  const n=years*12;
+  const monthlyPayment=loanAmount*(monthlyRate*Math.pow(1+monthlyRate,n))/(Math.pow(1+monthlyRate,n)-1);
+  const totalPayment=monthlyPayment*n;
+  const totalInterest=totalPayment-loanAmount;
+  document.getElementById('mortResult').style.display='block';
+  document.getElementById('mortResult').innerHTML=`
+    <div class="result-row"><span class="result-label">Down Payment (${downPct}%)</span><span class="result-value">${formatAED(downPayment)}</span></div>
+    <div class="result-row"><span class="result-label">Loan Amount</span><span class="result-value">${formatAED(loanAmount)}</span></div>
+    <div class="result-row"><span class="result-label">Monthly Payment</span><span class="result-value">${formatAED(monthlyPayment)}</span></div>
+    <div class="result-row"><span class="result-label">Total Interest</span><span class="result-value">${formatAED(totalInterest)}</span></div>
+    <div class="result-row highlight"><span class="result-label">Total Payment</span><span class="result-value big">${formatAED(totalPayment+downPayment)}</span></div>
+  `;
+}
+
+function calcDLD(){
+  const price=parseFloat(document.getElementById('dldPrice').value);
+  const type=document.getElementById('dldType').value;
+  if(!price)return;
+  const dldFee=price*0.04;
+  const registrationFee=type==='ready'?580:400;
+  const trusteeFee=type==='ready'?4200:4000;
+  const agencyFee=price*0.02;
+  const total=dldFee+registrationFee+trusteeFee+agencyFee;
+  document.getElementById('dldResult').style.display='block';
+  document.getElementById('dldResult').innerHTML=`
+    <div class="result-row"><span class="result-label">DLD Fee (4%)</span><span class="result-value">${formatAED(dldFee)}</span></div>
+    <div class="result-row"><span class="result-label">Registration Fee</span><span class="result-value">${formatAED(registrationFee)}</span></div>
+    <div class="result-row"><span class="result-label">Trustee Registration</span><span class="result-value">${formatAED(trusteeFee)}</span></div>
+    <div class="result-row"><span class="result-label">Agency Fee (2%)</span><span class="result-value">${formatAED(agencyFee)}</span></div>
+    <div class="result-row highlight"><span class="result-label">Total Acquisition Cost</span><span class="result-value big">${formatAED(total)}</span></div>
+    <div style="margin-top:16px;padding:12px;background:rgba(201,169,110,0.1);border-radius:8px;font-size:0.85rem;color:rgba(255,255,255,0.8)"><i class="fas fa-info-circle" style="color:var(--gold)"></i> Total upfront cost: ~${((total/price)*100).toFixed(1)}% of property value</div>
+  `;
+}
+
+function calcROI(){
+  const price=parseFloat(document.getElementById('roiPrice').value);
+  const rent=parseFloat(document.getElementById('roiRent').value);
+  const service=parseFloat(document.getElementById('roiService').value);
+  if(!price||!rent)return;
+  const grossYield=(rent/price)*100;
+  const netRent=rent-service;
+  const netYield=(netRent/price)*100;
+  const paybackYears=price/netRent;
+  document.getElementById('roiResult').style.display='block';
+  document.getElementById('roiResult').innerHTML=`
+    <div class="result-row"><span class="result-label">Gross Rental Yield</span><span class="result-value">${grossYield.toFixed(2)}%</span></div>
+    <div class="result-row"><span class="result-label">Net Annual Income</span><span class="result-value">${formatAED(netRent)}</span></div>
+    <div class="result-row"><span class="result-label">Net Rental Yield</span><span class="result-value">${netYield.toFixed(2)}%</span></div>
+    <div class="result-row"><span class="result-label">Payback Period</span><span class="result-value">${paybackYears.toFixed(1)} years</span></div>
+    <div class="result-row highlight"><span class="result-label">Market Average (Dubai)</span><span class="result-value big">5-8%</span></div>
+  `;
+}
+
+function checkVisa(){
+  const value=parseFloat(document.getElementById('visaValue').value);
+  const status=document.getElementById('visaStatus').value;
+  const mortgage=document.getElementById('visaMortgage').value;
+  if(!value)return;
+  let eligible=false,visaType='',message='';
+  if(value>=2000000&&status==='ready'&&mortgage==='none'){eligible=true;visaType='10-Year Golden Visa';message='Congratulations! You qualify for the UAE 10-Year Golden Visa.'}
+  else if(value>=750000&&status==='ready'&&mortgage==='none'){eligible=true;visaType='2-Year Investor Visa';message='You qualify for the 2-Year Investor Visa.'}
+  else if(value>=2000000&&status==='offplan'){eligible=true;visaType='Golden Visa (Off-Plan)';message='You qualify! Off-plan properties with complete payment proof are eligible.'}
+  else if(mortgage==='partial'){eligible=true;visaType='Golden Visa (Select Banks)';message='Eligible through approved banks.'}
+  else{eligible=false;visaType='Not Eligible Yet';message=`Minimum AED 750,000 investment required. You're ${formatAED(Math.max(0,750000-value))} away.`}
+  document.getElementById('visaResult').style.display='block';
+  document.getElementById('visaResult').innerHTML=`
+    <div style="text-align:center;padding:20px 0"><i class="fas ${eligible?'fa-check-circle':'fa-times-circle'}" style="font-size:3rem;color:${eligible?'#10b981':'#ef4444'};margin-bottom:16px"></i><h3 style="color:var(--gold);margin-bottom:8px">${visaType}</h3><p style="font-size:0.95rem;line-height:1.7;opacity:0.9">${message}</p></div>
+    <div class="result-row"><span class="result-label">Investment Value</span><span class="result-value">${formatAED(value)}</span></div>
+  `;
+}
+
+function calcAfford(){
+  const salary=parseFloat(document.getElementById('affSalary').value);
+  const loans=parseFloat(document.getElementById('affLoans').value);
+  const savings=parseFloat(document.getElementById('affSavings').value);
+  if(!salary)return;
+  const maxEMI=salary*0.5;
+  const availableEMI=maxEMI-loans;
+  const maxLoanMultiple=salary*25;
+  const rate=4.99/100/12;
+  const n=25*12;
+  const maxLoanFromEMI=availableEMI*(Math.pow(1+rate,n)-1)/(rate*Math.pow(1+rate,n));
+  const maxLoan=Math.min(maxLoanFromEMI,maxLoanMultiple);
+  const maxPropertyPrice=maxLoan+savings;
+  document.getElementById('affResult').style.display='block';
+  document.getElementById('affResult').innerHTML=`
+    <div class="result-row"><span class="result-label">Max Monthly EMI (50% rule)</span><span class="result-value">${formatAED(maxEMI)}</span></div>
+    <div class="result-row"><span class="result-label">Max Loan Amount (25x salary)</span><span class="result-value">${formatAED(maxLoan)}</span></div>
+    <div class="result-row"><span class="result-label">Your Down Payment</span><span class="result-value">${formatAED(savings)}</span></div>
+    <div class="result-row highlight"><span class="result-label">Max Property You Can Afford</span><span class="result-value big">${formatAED(maxPropertyPrice)}</span></div>
+  `;
+}
+
+function convertCurrency(){
+  const amount=parseFloat(document.getElementById('currAmount').value);
+  const from=document.getElementById('currFrom').value;
+  const to=document.getElementById('currTo').value;
+  if(!amount)return;
+  const rates={AED:1,USD:3.67,EUR:4.05,GBP:4.68,INR:0.044,PKR:0.0132};
+  const amountInAED=amount*rates[from];
+  const result=amountInAED/rates[to];
+  document.getElementById('currResult').style.display='block';
+  document.getElementById('currResult').innerHTML=`
+    <div style="text-align:center;padding:20px 0"><p style="font-size:0.9rem;opacity:0.7;margin-bottom:8px">Conversion Result</p><div style="font-family:var(--serif);font-size:2rem;color:var(--gold);font-weight:700;margin-bottom:8px">${result.toLocaleString('en-US',{maximumFractionDigits:2})} ${to}</div><p style="font-size:0.88rem;opacity:0.8">${amount.toLocaleString()} ${from}</p></div>
+    <div class="result-row"><span class="result-label">Exchange Rate</span><span class="result-value">1 ${from} = ${(rates[from]/rates[to]).toFixed(4)} ${to}</span></div>
+  `;
+}
+
+// ===== NAVBAR =====
+const navbar=document.getElementById('navbar');
+const mobileToggle=document.getElementById('mobileToggle');
+const navLinks=document.getElementById('navLinks');
+const backToTop=document.getElementById('backToTop');
+
+window.addEventListener('scroll',()=>{
+  if(window.scrollY>80){navbar.classList.add('scrolled');backToTop.classList.add('visible')}
+  else{navbar.classList.remove('scrolled');backToTop.classList.remove('visible')}
+  if(window.innerWidth>768){
+    const scrolled=window.scrollY;
+    document.getElementById('heroBg').style.transform=`scale(1.1) translateY(${scrolled*0.3}px)`;
+  }
+});
+
+backToTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+mobileToggle.addEventListener('click',()=>{
+  navLinks.classList.toggle('active');
+  const icon=mobileToggle.querySelector('i');
+  icon.classList.toggle('fa-bars');
+  icon.classList.toggle('fa-times');
+});
+
+document.querySelectorAll('.nav-links a').forEach(link=>{
+  link.addEventListener('click',()=>{
+    navLinks.classList.remove('active');
+    const icon=mobileToggle.querySelector('i');
+    icon.classList.remove('fa-times');
+    icon.classList.add('fa-bars');
+  });
+});
+
+// ===== SCROLL ANIMATIONS =====
+function observeElements(){
+  const observer=new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}
+    });
+  },{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+  document.querySelectorAll('.fade-in:not(.visible),.fade-in-left:not(.visible),.fade-in-right:not(.visible)').forEach(el=>observer.observe(el));
+}
+
+// ===== CONTACT FORM =====
+document.getElementById('contactForm').addEventListener('submit',(e)=>{
+  e.preventDefault();
+  const btn=e.target.querySelector('.btn-submit');
+  const original=btn.innerHTML;
+  btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Sending...';
+  btn.disabled=true;
+  setTimeout(()=>{
+    btn.innerHTML='<i class="fas fa-check"></i> Message Sent!';
+    btn.style.background='#10b981';
+    showToast("Thank you! We'll contact you within 2 hours.");
+    setTimeout(()=>{e.target.reset();btn.innerHTML=original;btn.style.background='';btn.disabled=false},2500);
+  },1500);
+});
+
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+  anchor.addEventListener('click',function(e){
+    const target=document.querySelector(this.getAttribute('href'));
+    if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'})}
+  });
+});
+
+// ===== INIT =====
+window.addEventListener('load',()=>{
+  setTimeout(()=>{document.getElementById('loader').classList.add('hidden')},800);
+  initDropdowns();
+  renderFeatured();
+  renderAreas();
+  renderBrowser();
+  updateBadges();
+  setTimeout(observeElements,100);
+});
 </script>
 </body>
 </html>
+
